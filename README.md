@@ -23,7 +23,7 @@ Médecin / secrétaire / clinique esthétique : que ce soit pour ouvrir un compt
 /plugin install nextmotion-copilot@nextmotion-copilot
 ```
 
-Puis active le **connecteur MCP Nextmotion** (voir [`CONNECTORS.md`](CONNECTORS.md)) et dis « configure mon compte Nextmotion ».
+Le serveur MCP **nextmotion** est fourni par le plugin (`.mcp.json`) : ouvre `/mcp`, **approuve-le** et **authentifie-toi** (voir [`CONNECTORS.md`](CONNECTORS.md)), puis dis « configure mon compte Nextmotion ».
 
 **Claude Desktop** — l'install par URL n'existe pas sur Desktop : on téléverse un zip. Construis-le avec `./package.sh`, puis Réglages → **Plugins personnels** → `+` → « Téléverser un plugin local » → `dist/nextmotion-copilot.zip`. Connecteur MCP idem.
 
@@ -41,6 +41,7 @@ Un seul composant : **le skill** `nextmotion-copilot` (pas de `commands/` — fo
 
 ```
 nextmotion-copilot/                  # racine du plugin (= le repo)
+├── .mcp.json                        # serveur MCP nextmotion (fourni par le plugin)
 ├── .claude-plugin/
 │   ├── plugin.json                  # manifeste plugin (requis par l'uploader Desktop)
 │   └── marketplace.json             # pour /plugin marketplace add (Claude Code)
@@ -71,7 +72,7 @@ Validé par 3 personas non-techniques (test RED→GREEN), où le skill d'onboard
 
 ## MCP requis
 
-Connecteur Nextmotion clinique : `https://mcp.nextmotion.net/mcp` (auth par clé API clinique / OAuth). Distinct du Superadmin (`/sadmin/mcp`).
+Serveur Nextmotion clinique : `https://mcp.nextmotion.net/mcp` (auth par clé API clinique / OAuth), **fourni par le plugin** via `.mcp.json` — il suffit de l'approuver et de s'authentifier. Distinct du Superadmin (`/sadmin/mcp`).
 
 ## Licence
 
