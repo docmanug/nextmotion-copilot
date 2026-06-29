@@ -1,0 +1,9 @@
+{
+  "name": "nextmotion-copilot",
+  "version": "1.2.15",
+  "displayName": "Nextmotion Copilot",
+  "description": "Copilote Nextmotion en langage naturel : configurer son compte, aide à l'usage quotidien, et onboarding/formation d'un collaborateur.",
+  "author": { "name": "Emmanuel Elard" },
+  "homepage": "https://www.nextmotion.net",
+  "keywords": ["nextmotion", "medecine-esthetique", "configuration", "onboarding", "aide"]
+}

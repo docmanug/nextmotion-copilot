@@ -1,0 +1,13 @@
+{
+  "name": "nextmotion-copilot",
+  "description": "Copilote Nextmotion : configuration, aide à l'usage, onboarding.",
+  "owner": { "name": "Emmanuel Elard" },
+  "plugins": [
+    {
+      "name": "nextmotion-copilot",
+      "source": ".",
+      "description": "Copilote Nextmotion en langage naturel : config, aide à l'usage, onboarding/formation.",
+      "version": "1.2.15"
+    }
+  ]
+}

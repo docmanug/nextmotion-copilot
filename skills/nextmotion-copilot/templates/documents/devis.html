@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devis</title>
+  <style>
+    /* ── Réinitialisation & typographie ── */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #222; background: #fff; }
+
+    /* ── Mise en page A4 ── */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 20mm 15mm 30mm 15mm;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── En-tête ── */
+    .page_header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #1a4e82;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+    .clinic_logo img { max-height: 70px; max-width: 180px; }
+    .clinic_logo .logo_placeholder {
+      font-size: 18px;
+      font-weight: bold;
+      color: #1a4e82;
+    }
+    .clinic_info { text-align: right; font-size: 11px; line-height: 1.5; }
+
+    /* ── Titre du document ── */
+    .document_title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1a4e82;
+      margin-bottom: 4px;
+    }
+    .document_meta { font-size: 11px; color: #555; margin-bottom: 20px; }
+
+    /* ── Bloc patient ── */
+    .patient_block {
+      background: #f4f8ff;
+      border-left: 4px solid #1a4e82;
+      padding: 10px 14px;
+      margin-bottom: 20px;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .patient_block strong { color: #1a4e82; }
+
+    /* ── Variables autocomplete (champs remplis par Nextmotion) ── */
+    input[type="button"].autocomplete-field {
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+      cursor: default;
+      padding: 0;
+      display: inline;
+    }
+
+    /* ── Tableau des prestations ── */
+    .prestations_table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      font-size: 11px;
+    }
+    .prestations_table thead {
+      background: #1a4e82;
+      color: #fff;
+    }
+    .prestations_table thead th {
+      padding: 8px 10px;
+      text-align: left;
+    }
+    .prestations_table thead th:last-child,
+    .prestations_table thead th:nth-last-child(2),
+    .prestations_table thead th:nth-last-child(3) {
+      text-align: right;
+    }
+    .prestations_table tbody tr:nth-child(even) { background: #f7f7f7; }
+    .prestations_table tbody td {
+      padding: 7px 10px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .prestations_table tbody td:last-child,
+    .prestations_table tbody td:nth-last-child(2),
+    .prestations_table tbody td:nth-last-child(3) {
+      text-align: right;
+    }
+
+    /* ── Bloc totaux ── */
+    .totals_block {
+      margin-left: auto;
+      width: 260px;
+      font-size: 11px;
+    }
+    .totals_block table { width: 100%; border-collapse: collapse; }
+    .totals_block td { padding: 5px 8px; }
+    .totals_block .total_ht { font-weight: bold; }
+    .totals_block .total_ttc {
+      font-size: 13px;
+      font-weight: bold;
+      color: #1a4e82;
+      border-top: 2px solid #1a4e82;
+    }
+
+    /* ── Validité & conditions ── */
+    .validity_block {
+      margin-top: 20px;
+      font-size: 10px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* ── Zone de signature ── */
+    .signature_block {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 24px;
+      gap: 20px;
+    }
+    .signature_zone {
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 12px;
+      min-height: 80px;
+      font-size: 10px;
+      color: #777;
+    }
+    .signature_zone .label { font-weight: bold; color: #222; margin-bottom: 6px; }
+
+    /* ── Spacer pour pousser le footer en bas ── */
+    .page_spacer { flex-grow: 1; }
+
+    /* ── Pied de page ── */
+    .page_footer {
+      border-top: 1px solid #ccc;
+      padding-top: 8px;
+      margin-top: 12px;
+      font-size: 9px;
+      color: #777;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    @media print {
+      .page { margin: 0; padding: 10mm 12mm 18mm 12mm; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ══ EN-TÊTE ══ -->
+  <div class="page_header">
+    <div class="clinic_logo">
+      <!-- Logo clinique injecté par Nextmotion si disponible -->
+      <div class="logo_placeholder">
+        <input type="button" class="clinic_name--autocomplete autocomplete-field" value="">
+      </div>
+    </div>
+    <div class="clinic_info">
+      <input type="button" class="clinic_address--autocomplete autocomplete-field" value=""><br>
+      <input type="button" class="clinic_phone--autocomplete autocomplete-field" value=""><br>
+      <input type="button" class="clinic_email--autocomplete autocomplete-field" value=""><br>
+      SIRET : <input type="button" class="clinic_siret--autocomplete autocomplete-field" value=""><br>
+      N° RPPS : <input type="button" class="clinic_rpps--autocomplete autocomplete-field" value="">
+    </div>
+  </div>
+
+  <!-- ══ TITRE ══ -->
+  <div class="document_title">DEVIS</div>
+  <div class="document_meta">
+    N° <strong><input type="button" class="quote_number--autocomplete autocomplete-field" value=""></strong>
+    &nbsp;|&nbsp;
+    Date : <input type="button" class="quote_date--autocomplete autocomplete-field" value="">
+    &nbsp;|&nbsp;
+    Valable jusqu'au : <input type="button" class="quote_validity_date--autocomplete autocomplete-field" value="">
+  </div>
+
+  <!-- ══ PATIENT ══ -->
+  <div class="patient_block">
+    <strong>Patient :</strong>
+    <input type="button" class="patient_name--autocomplete autocomplete-field" value=""><br>
+    <input type="button" class="patient_address--autocomplete autocomplete-field" value=""><br>
+    Date de naissance : <input type="button" class="patient_birthdate--autocomplete autocomplete-field" value="">
+  </div>
+
+  <!-- ══ PRATICIEN ══ -->
+  <div style="font-size:11px; margin-bottom:16px;">
+    <strong>Praticien :</strong>
+    <input type="button" class="doctor_name--autocomplete autocomplete-field" value="">
+    &nbsp;–&nbsp;
+    <input type="button" class="doctor_specialty--autocomplete autocomplete-field" value="">
+  </div>
+
+  <!-- ══ TABLEAU DES PRESTATIONS ══ -->
+  <table class="prestations_table">
+    <thead>
+      <tr>
+        <th style="width:45%">Désignation de l'acte / traitement</th>
+        <th style="width:15%">Quantité</th>
+        <th style="width:18%">Prix unitaire HT</th>
+        <th style="width:10%">TVA</th>
+        <th style="width:12%">Total TTC</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Lignes de prestations injectées par Nextmotion -->
+      <input type="button" class="quote_lines--autocomplete autocomplete-field" value="">
+      <!-- Ligne exemple (remplacée par les données Nextmotion) -->
+      <tr>
+        <td>Acte de médecine esthétique</td>
+        <td style="text-align:right">1</td>
+        <td style="text-align:right">0,00 €</td>
+        <td style="text-align:right">0 %</td>
+        <td style="text-align:right">0,00 €</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ══ TOTAUX ══ -->
+  <div class="totals_block">
+    <table>
+      <tr>
+        <td>Total HT :</td>
+        <td style="text-align:right">
+          <input type="button" class="total_amount_ht--autocomplete autocomplete-field" value="">
+        </td>
+      </tr>
+      <tr>
+        <td>TVA :</td>
+        <td style="text-align:right">
+          <input type="button" class="total_tax--autocomplete autocomplete-field" value="">
+        </td>
+      </tr>
+      <tr class="total_ttc">
+        <td><strong>Total TTC :</strong></td>
+        <td style="text-align:right">
+          <strong><input type="button" class="total_amount--autocomplete autocomplete-field" value=""></strong>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="font-size:10px; color:#555; padding-top:4px;">
+          Acompte demandé : <input type="button" class="deposit_amount--autocomplete autocomplete-field" value="">
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ══ VALIDITÉ & CONDITIONS ══ -->
+  <div class="validity_block">
+    <p><strong>Conditions :</strong> Ce devis est valable 3 mois à compter de sa date d'émission. Les actes de médecine esthétique ne sont pas remboursés par l'Assurance Maladie. En cas d'accord, veuillez retourner ce devis signé avec la mention « Bon pour accord ».</p>
+    <p style="margin-top:6px;">Conformément à la réglementation, tout acte de chirurgie esthétique nécessite un délai de réflexion de 15 jours entre la remise du devis et l'intervention. Pour les actes médicaux esthétiques non soumis à ce délai légal, votre accord peut être donné immédiatement.</p>
+  </div>
+
+  <!-- ══ SIGNATURES ══ -->
+  <div class="signature_block">
+    <div class="signature_zone">
+      <div class="label">Signature du praticien</div>
+      Dr <input type="button" class="doctor_name--autocomplete autocomplete-field" value="">
+    </div>
+    <div class="signature_zone">
+      <div class="label">Bon pour accord — Signature du patient</div>
+      <em>Précédée de la mention manuscrite « Bon pour accord »</em>
+    </div>
+  </div>
+
+  <div class="page_spacer"></div>
+
+  <!-- ══ PIED DE PAGE ══ -->
+  <div class="page_footer">
+    <input type="button" class="clinic_name--autocomplete autocomplete-field" value="">
+    — <input type="button" class="clinic_address--autocomplete autocomplete-field" value="">
+    — Tél. : <input type="button" class="clinic_phone--autocomplete autocomplete-field" value=""><br>
+    SIRET : <input type="button" class="clinic_siret--autocomplete autocomplete-field" value="">
+    — N° RPPS : <input type="button" class="clinic_rpps--autocomplete autocomplete-field" value=""><br>
+    Document généré via Nextmotion — <input type="button" class="clinic_legal_mentions--autocomplete autocomplete-field" value="">
+  </div>
+
+</div><!-- /.page -->
+
+</body>
+</html>
