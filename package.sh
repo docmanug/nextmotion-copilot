@@ -11,7 +11,7 @@ DIST="$ROOT/dist"
 OUT="$DIST/nextmotion-copilot.zip"
 
 # Composants du plugin (docs/, .git, dist/, .superpowers exclus)
-INCLUDE=(.claude-plugin .mcp.json skills README.md CONNECTORS.md LICENSE)
+INCLUDE=(.claude-plugin .mcp.json skills README.md CONNECTORS.md CHANGELOG.md LICENSE)
 
 for p in "${INCLUDE[@]}"; do
   [ -e "$ROOT/$p" ] || { echo "❌ Manquant : $p" >&2; exit 1; }

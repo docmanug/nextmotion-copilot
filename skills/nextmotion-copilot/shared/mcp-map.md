@@ -68,6 +68,12 @@ Ces outils sont utilisés pour l'audit silencieux du compte avant de proposer le
 - `Nextmotion:oapi_clinic_document_template_list` — vérifier si des modèles existent
 - `Nextmotion:oapi_clinic_doctor_list` — vérifier si des praticiens existent
 - `Nextmotion:oapi_clinic_survey_form_list` — vérifier consentements/BoltNotes existants
+
+---
+
+## Outil de connaissance — aide à l'usage & formation
+
+- `search_knowledge_base` (outil **Nextmotion MCP**, hors nomenclature `oapi_*`) — recherche dans la base de connaissances Nextmotion (articles d'aide, how-to, dépannage). **Lecture seule**, jamais destructif. C'est l'outil principal du mode 💡 **aide-usage** (`references/aide-usage.md`) et un appui du mode 🎓 **formation** pour expliquer une notion. Repli s'il est indisponible : `shared/playbook-usage.md` (how-to distillés) + `shared/glossary.md`, puis guidage UI — zéro jargon technique (`shared/known-issues.md`).
 - `Nextmotion:oapi_clinic_payment_medium_list` — vérifier moyens de paiement existants
 - `Nextmotion:oapi_clinic_treatment_type_list` — vérifier traitements existants
 - `Nextmotion:oapi_user_me_retrieve` — récupérer le profil de l'utilisateur courant

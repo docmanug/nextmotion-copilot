@@ -1,13 +1,21 @@
 {
   "name": "nextmotion-copilot",
   "description": "Copilote Nextmotion : configuration, aide à l'usage, onboarding.",
-  "owner": { "name": "Emmanuel Elard" },
+  "owner": {
+    "name": "Emmanuel Elard",
+    "email": "support@nextmotion.net"
+  },
   "plugins": [
     {
       "name": "nextmotion-copilot",
-      "source": ".",
+      "source": "./",
       "description": "Copilote Nextmotion en langage naturel : config, aide à l'usage, onboarding/formation.",
-      "version": "1.3.1"
+      "author": { "name": "Emmanuel Elard", "email": "support@nextmotion.net" },
+      "homepage": "https://www.nextmotion.net",
+      "repository": "https://github.com/docmanug/nextmotion-copilot",
+      "license": "LicenseRef-Nextmotion-Proprietary",
+      "keywords": ["nextmotion", "medecine-esthetique", "configuration", "onboarding", "aide"],
+      "category": "productivity"
     }
   ]
 }

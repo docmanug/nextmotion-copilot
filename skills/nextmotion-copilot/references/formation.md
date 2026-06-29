@@ -32,7 +32,7 @@ Avant de démarrer le parcours, poser **une ou deux questions d'orientation** se
 
 ## Les 5 phases du parcours — Structure générale
 
-Ces phases sont tirées de `shared/playbook-onboarding.md`. Le déroulé exact varie selon le rôle.
+Ces phases ont été **distillées au build-time** depuis le playbook interne ; tout le nécessaire au runtime est repris ci-dessous (ne charge pas `shared/playbook-onboarding.md`, qui n'est pas lu au runtime). Le déroulé exact varie selon le rôle.
 
 ### Phase 1 — Accueil & Cadrage
 
@@ -163,7 +163,7 @@ Le titulaire configure ET utilise le logiciel. Il a besoin du setup complet + de
 
 **Règle praticien solo :** un flux à la fois. Maîtriser « créer un patient + faire un devis » avant de passer aux stocks ou aux statistiques.
 
-**Pour expliquer** une notion → appeler `search_knowledge_base` + s'appuyer sur `shared/playbook-onboarding.md` (section Pédagogie).
+**Pour expliquer** une notion → appeler `search_knowledge_base` (la pédagogie est déjà résumée dans les 5 phases ci-dessus).
 
 ---
 
@@ -184,7 +184,7 @@ L'assistante prend en main un compte déjà configuré. Son parcours est centré
 - Elle peut tout faire au quotidien avec le rôle Manager : agenda, patients, devis, facturation, photos
 - Si elle ne voit pas certaines options → vérifier que le rôle Owner n'a pas été attribué par erreur à un autre compte, et que son association médecin / assistante est bien configurée
 
-Pour expliquer : `search_knowledge_base` + `shared/playbook-onboarding.md` (Parcours B) + `shared/playbook-usage.md` (Association patient-médecin).
+Pour expliquer : `search_knowledge_base` + `shared/playbook-usage.md` (Association patient-médecin).
 
 ---
 
@@ -292,7 +292,7 @@ Ne jamais supposer que l'utilisateur a compris parce qu'il n'a pas posé de ques
 - **Praticien solo surchargé** : sessions courtes (45 min max), un flux à la fois, fin de session = 1 action concrète à faire seul
 - **Assistante** : commencer par les tâches du quotidien, pas le paramétrage
 - **Centre multi-praticiens** : rythme plus rapide sur les bases, aller vers les cas multi-praticiens spécifiques
-- **Client qui vient d'un autre logiciel** : poser la question de migration dès la Phase 1 (voir `shared/playbook-onboarding.md` section Migration)
+- **Client qui vient d'un autre logiciel** : poser la question de migration dès la Phase 1 et s'appuyer sur `search_knowledge_base` (« migration / import ») pour les détails
 
 ### Jargon
 
