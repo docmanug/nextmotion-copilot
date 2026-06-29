@@ -12,9 +12,9 @@ Nextmotion utilise une structure à 3 niveaux pour organiser les consultations :
 |--------|-------------|-------------|-----|
 | **L1** | Catégorie de consultation | Regroupement par grande famille d'actes | ✅ `oapi_clinic_visit_type_category_create` |
 | **L2** | Motif de consultation | L'acte ou la raison de venue du patient | ✅ `oapi_clinic_visit_type_create` |
-| **L3** | Sous-motif | Précision du motif (ex. zone anatomique) | ⚠️ Guidage UI uniquement (lecture seule via MCP) |
+| **L3** | Sous-motif | Précision du motif (ex. zone anatomique) | ✅ via `oapi_clinic_visit_type_create` (tableau `sub_visit_types`) |
 
-**Règle pratique :** commencer par créer les catégories (L1), puis les motifs dans chaque catégorie (L2). Les sous-motifs (L3) se gèrent dans l'interface Nextmotion (⚙️ → Consultations → sous-motifs).
+**Règle pratique :** commencer par créer les catégories (L1), puis les motifs (L2), puis les sous-motifs (L3) — **les trois niveaux se créent via MCP** (les L3 en passant le tableau `sub_visit_types` à `oapi_clinic_visit_type_create`). L'UI reste un repli si l'API est indisponible.
 
 ---
 

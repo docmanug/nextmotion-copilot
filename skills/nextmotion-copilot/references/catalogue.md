@@ -16,9 +16,9 @@
 
 ## Section 5 — Motifs de consultation (L1 / L2 / L3)
 
-**Niveau MCP : 🟡 Partielle.**
+**Niveau MCP : ✅ Complète.**
 - L1 (catégories) et L2 (motifs) → MCP complet ✅
-- **L3 (sous-motifs) → guidage UI uniquement** (MCP lecture seule pour les lire, pas les créer)
+- **L3 (sous-motifs) → MCP complet ✅** (créés via le tableau `sub_visit_types` — cf. § L3 ci-dessous ; l'UI n'est qu'un repli)
 
 ### Étape 1 — Proposer les défauts
 
@@ -294,11 +294,10 @@ Vérification : lister les produits créés.
 À la fin du catalogue, Claude liste :
 
 ```
-✅ Motifs de consultation (L1/L2) :
+✅ Motifs de consultation (L1/L2/L3) :
    - [N] catégories créées
    - [N] motifs créés
-   ⚠️ Sous-motifs L3 : à créer dans l'interface si souhaité
-      → ⚙️ Consultations → motif L2 → Sous-motifs
+   - [N] sous-motifs créés (via MCP, sub_visit_types)
 
 ✅ Traitements et tarifs :
    - [N] traitements créés
