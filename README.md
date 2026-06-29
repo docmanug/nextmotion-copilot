@@ -72,7 +72,7 @@ Validé par 3 personas non-techniques (test RED→GREEN), où le skill d'onboard
 
 ## MCP requis
 
-Serveur Nextmotion clinique : `https://mcp.nextmotion.net/mcp` (auth par clé API clinique / OAuth), **fourni par le plugin** via `.mcp.json` — il suffit de l'approuver et de s'authentifier. Distinct du Superadmin (`/sadmin/mcp`).
+Serveur Nextmotion clinique : `https://mcp.nextmotion.net/mcp` (auth par clé API clinique / OAuth), **fourni par le plugin** via `.mcp.json` — il suffit de l'approuver et de s'authentifier.
 
 ## Licence
 

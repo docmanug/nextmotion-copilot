@@ -54,7 +54,7 @@
 | ❌ Aucun (UI) | 1, 12, 17, 19, 20, 22 | 6 |
 | **Total** | | **25** |
 
-> **Corrections vérifiées en prod le 25/06** (compte test Dr Jean Dujardin) : §3 secrétaire créable via MCP (`kind`) · §5 sous-motifs L3 créables via MCP (`sub_visit_types`) · §4 prix = `pricings[]` décimal multi-variantes · `doctor_create` exige `email`+`kind` (pas `fr_rpps`) · motif L2 = `subject`/`category`/`duration_minutes` · gotcha agenda : plage doit lister ses `sub_visit_types`. §2 (identité clinique) confirmé **sans endpoint d'écriture** dans l'API ouverte (logo/TVA/adresse = UI ; sadmin ne modifie que `name`).
+> **Corrections vérifiées en prod le 25/06** : §3 secrétaire créable via MCP (`kind`) · §5 sous-motifs L3 créables via MCP (`sub_visit_types`) · §4 prix = `pricings[]` décimal multi-variantes · `doctor_create` exige `email`+`kind` (pas `fr_rpps`) · motif L2 = `subject`/`category`/`duration_minutes` · gotcha agenda : plage doit lister ses `sub_visit_types`. §2 (identité clinique) confirmé **sans endpoint d'écriture** dans l'API ouverte (logo/TVA/adresse = UI).
 
 ## Outils supplémentaires (audit silencieux au démarrage)
 

@@ -31,7 +31,7 @@ Ce choix détermine l'étendue de la configuration :
 
 **Niveau MCP : 👁 Lecture seule.** Claude peut lire les informations mais pas les modifier via MCP. Il guide l'interface.
 
-> ⚠️ **Confirmé en prod (25/06) : aucun endpoint d'écriture sur l'identité clinique dans l'API ouverte.** Ni nom, ni adresse, ni **logo**, ni **n° TVA** ne sont modifiables via MCP. Même en superadmin (`sadmin_clinic_update`), seul le `name` (+ lien Monday + features) est éditable — **pas** logo/TVA/adresse. → Ces champs restent **UI uniquement** (`settings.my_clinic.edit`). **Trou d'API à remonter à Marcin** (logo + TVA notamment).
+> ⚠️ **Confirmé en prod (25/06) : aucun endpoint d'écriture sur l'identité clinique dans l'API ouverte.** Ni nom, ni adresse, ni **logo**, ni **n° TVA** ne sont modifiables via MCP. → Ces champs restent **UI uniquement** (`settings.my_clinic.edit`).
 
 ### Ce que Claude fait d'abord
 
@@ -174,7 +174,7 @@ Mots-clés suggérés : `Visage complet`, `Lèvres`, `Pommettes`, `Front`, `Glab
 
 **Niveau MCP : ❌ Aucun (lecture seule).** Entièrement manuel, guidage UI.
 
-> ⚠️ **Confirmé en dur (25/06) : `/open_api/v4/users/me` est READ-ONLY.** `GET` OK (`oapi_user_me_retrieve`) mais **`PATCH`/`PUT`/`POST` → 405** « method not allowed ». Donc le copilote **ne peut PAS** remplir les infos du profil, changer la langue, ni **uploader la photo / la signature** du praticien via l'API ouverte — c'est l'app/web NM (endpoint interne `NM-Authorization`) qui le fait. Ne cherche pas de tool `user_me_update` : il n'existe pas. → **UI uniquement** + **trou d'API à remonter à Marcin** (même famille que clinic logo/TVA : identité & branding non-écrivables en open API).
+> ⚠️ **Confirmé en dur (25/06) : `/open_api/v4/users/me` est READ-ONLY.** `GET` OK (`oapi_user_me_retrieve`) mais **`PATCH`/`PUT`/`POST` → 405** « method not allowed ». Donc le copilote **ne peut PAS** remplir les infos du profil, changer la langue, ni **uploader la photo / la signature** du praticien via l'API ouverte — c'est l'app/web NM (endpoint interne `NM-Authorization`) qui le fait. Ne cherche pas de tool `user_me_update` : il n'existe pas. → **UI uniquement** (même famille que clinic logo/TVA : identité & branding non-écrivables en open API).
 
 Référence complète : `shared/ui-paths.md` § 1
 
