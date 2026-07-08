@@ -3,6 +3,14 @@
 > **Module 2 du parcours — après les fondations.**
 > Prérequis : ≥1 praticien créé (fondations § 3).
 > Ce module consomme : `shared/mcp-map.md` · `templates/motifs-defaults.md` · `templates/boltnotes-defaults.md`.
+>
+> 🚩 **Prérequis absolu : la Découverte a eu lieu** (`references/decouverte.md`).
+> Tu crées motifs et traitements **à partir de ce que le client t'a dit** (son
+> activité, ses motifs, ses traitements + prix — ou son Excel collé), **pas** d'un
+> pack standard. Ci-dessous, « proposer » = proposer **ce que tu as compris de son
+> activité**, faire valider, **puis** écrire. Le pack générique n'est qu'un
+> **fallback explicite** (« je pars d'une base type et on ajuste ? »), jamais un
+> auto-write par lot.
 
 **Ordre impératif :** motifs de consultation d'abord, traitements et tarifs ensuite. C'est l'ordre du vrai wizard Nextmotion — les motifs structurent l'agenda ; les traitements et tarifs y sont liés ensuite.
 
@@ -18,24 +26,29 @@
 
 **Niveau MCP : 🟡 Partielle.**
 - L1 (catégories) et L2 (motifs) → MCP complet ✅
-- **L3 (sous-motifs) → guidage UI uniquement** (MCP lecture seule pour les lire, pas les créer)
+- **L3 (sous-motifs) → MCP direct** ✅ (créables via le tableau `sub_visit_types`, vérifié prod — cf. sous-section L3 plus bas)
 
-### Étape 1 — Proposer les défauts
+### Étape 1 — Proposer les motifs (issus de la Découverte)
 
-Claude propose les motifs types du pack modèles :
+Tu proposes les motifs **à partir de ce que le client t'a dit** (`references/decouverte.md`) —
+son activité, ses motifs de consultation. Reformule et fais **valider avant** de créer :
 
-> « Je vous ai préparé les motifs de consultation les plus courants en médecine esthétique. On va les créer en une fois. Vous pouvez en retirer, en ajouter, ou modifier les durées. »
+> « D'après ce que vous m'avez dit, je vous propose ces motifs : [SES motifs, avec
+> durées]. On les crée comme ça, ou vous ajustez — retirer, ajouter, changer une durée ? »
 
-Référence : `templates/motifs-defaults.md` — catégories et motifs recommandés :
+**Fallback uniquement si le client ne sait pas / veut aller vite** : propose le pack type
+médecine esthétique **comme base à ajuster** (`templates/motifs-defaults.md`), jamais écrit
+tel quel sans OK :
 
-| Catégorie (L1) | Motifs inclus (L2) |
+| Catégorie (L1) | Motifs (L2) |
 |----------------|-------------------|
 | Consultations générales | Première consultation (45 min), Suivi/contrôle (15 min) |
 | Injections | HA (30 min), Toxine botulique (30 min), Injections combinées (45 min) |
 | Soins & technologies | Laser (30 min), Peeling chimique (30 min), HIFU (60 min) |
 | Actes spécifiques | Retouche/complémentation (20 min) |
 
-> « On crée tout ça maintenant ? Vous pouvez me dire ce que vous voulez retirer ou modifier. »
+> « Je peux partir de cette base type et on l'ajuste ensemble ? Dites-moi ce que vous
+> voulez retirer, ajouter ou renommer. » — puis crée **après** son OK.
 
 ### Étape 2 — Créer les catégories L1 via MCP
 
@@ -137,22 +150,26 @@ Nextmotion:oapi_clinic_visit_type_list           → confirmer les motifs L2
 - Traitement = ce que vous faites et ce que vous facturez (pour la compta)
 - À la fin de ce module, on les lie ensemble.
 
-### Étape 1 — Proposer les défauts
+### Étape 1 — Proposer les traitements (issus de la Découverte)
 
-Claude propose une liste de traitements types basée sur les motifs créés :
+Tu pars de la liste que le client t'a donnée (ou de son **Excel collé**) en Découverte :
+ses traitements, avec leurs **sous-traitements** (= lignes de tarif) et leurs prix.
+**Rappel hiérarchie : le prix vit sur le sous-traitement** (le `pricing`), pas sur le
+traitement parent. Reformule et fais **valider avant** de créer :
 
-> « Je vous propose des types de traitements qui correspondent à vos motifs. Vous me donnez les prix et je crée tout. »
+> « Voici les traitements que je vais créer, avec vos tarifs : [SES traitements →
+> sous-traitements → prix]. Un prix me manque quelque part ? On ajuste avant que je crée. »
 
-Exemple pour un cabinet injections :
+**S'il n'a pas donné de liste**, propose une trame calquée sur SES motifs, à compléter
+par ses prix (jamais un prix inventé) :
 
-| Traitement | Prix TTC suggéré | Zone |
-|------------|-----------------|------|
-| Injection HA lèvres | à renseigner | Lèvres |
-| Injection HA pommettes | à renseigner | Pommettes |
-| Injection toxine front | à renseigner | Front |
-| Injection toxine glabelle | à renseigner | Glabelle |
+| Traitement (parent) | Sous-traitement (ligne de tarif) | Prix TTC |
+|---------------------|----------------------------------|----------|
+| Injection acide hyaluronique | 1 seringue (lèvres) | à renseigner |
+| Injection acide hyaluronique | 2 seringues (volumateur) | à renseigner |
+| Toxine botulique | Front / Glabelle / Pattes d'oie | à renseigner |
 
-> « Vous me donnez vos tarifs ? Pour chaque traitement, je crée la fiche. »
+> « Donnez-moi vos prix pour chaque ligne et je crée tout. »
 
 ### Étape 2 — Créer les traitements via MCP
 
@@ -294,11 +311,10 @@ Vérification : lister les produits créés.
 À la fin du catalogue, Claude liste :
 
 ```
-✅ Motifs de consultation (L1/L2) :
+✅ Motifs de consultation (L1/L2/L3) :
    - [N] catégories créées
    - [N] motifs créés
-   ⚠️ Sous-motifs L3 : à créer dans l'interface si souhaité
-      → ⚙️ Consultations → motif L2 → Sous-motifs
+   - [N] sous-motifs créés (via MCP)
 
 ✅ Traitements et tarifs :
    - [N] traitements créés

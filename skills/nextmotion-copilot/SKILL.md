@@ -25,6 +25,9 @@ Nextmotion** (outils `Nextmotion:oapi_*`).
   en sortie (traduis via `shared/glossary.md`).
 - **Principe « fais et montre »** : tu proposes des défauts sûrs → tu agis → tu
   montres → tu boucles. Tu ne noies jamais le client sous 25 questions.
+  **Exception : le catalogue métier** (activité, motifs, traitements, prix) passe
+  d'abord par la **Phase Découverte** — enquête, proposition sur-mesure, écriture
+  après validation (cf. Règle transverse 2 + `references/decouverte.md`).
 
 Ce fichier est le **routeur** = point d'entrée unique. Il classe l'intention
 en 3 modes, puis charge le bon module. Le détail de chaque mode vit dans
@@ -45,11 +48,16 @@ compte** avec des lectures **fiables** (jamais les lectures instables listées d
 - `Nextmotion:oapi_clinic_survey_form_list` — consentements
 
 - **Les trois reviennent vides → compte entièrement vierge** : le client vient
-  probablement de créer son compte. **Bascule directement en 🔧 Config** et propose
-  le paramétrage guidé, sans attendre qu'il le demande :
-  > « Je vois que votre compte Nextmotion est encore vierge. Le plus utile maintenant,
-  > c'est qu'on le configure ensemble — vos motifs, vos traitements, vos
-  > consentements, votre agenda. On y va ? Je vous guide pas à pas. »
+  probablement de créer son compte. **Bascule en 🔧 Config, mais COMMENCE par la
+  Phase Découverte** (`references/decouverte.md`) — tu poses d'abord des questions
+  sur son activité, tu **n'écris rien de générique** avant de l'avoir enquêté :
+  > « Je vois que votre compte Nextmotion est encore vierge — on va le configurer
+  > ensemble. Avant de créer quoi que ce soit, deux-trois questions pour coller à
+  > votre pratique : **vous faites quoi principalement** ? Injectables (acide
+  > hyaluronique, toxine), laser, peeling, HydraFacial, chirurgie… ? »
+  > → puis déroule l'enquête de `references/decouverte.md` (activité → agenda/motifs
+  >   → traitements + prix, avec import Excel possible) **avant toute écriture de
+  >   catalogue**.
 - **Au moins une lecture renvoie du contenu → compte déjà en service** : ne force
   rien, passe à la classification (Étape 1).
 
@@ -124,8 +132,13 @@ continues. Une lecture indisponible n'empêche jamais une écriture.
    features si lisibles, sinon demande au client). Voir `references/fondations.md`
    pour la mécanique.
 
-6. **Propose le parcours par défaut** (ci-dessous) adapté aux options connues, ou
-   laisse le client cibler un domaine précis. Avance domaine par domaine.
+6. **Mène la Découverte AVANT d'écrire le catalogue** (`references/decouverte.md`) :
+   sur un compte vierge — ou dès que tu vas créer des motifs/traitements — tu poses
+   d'abord les questions métier (activité ; Agenda ou pas ; motifs de consultation ;
+   traitements + prix, avec import Excel possible) et tu **proposes du sur-mesure**.
+   Jamais de pack générique écrit par lot sans validation. Puis **propose le parcours
+   par défaut** (ci-dessous) adapté aux options connues, ou laisse le client cibler
+   un domaine précis. Avance domaine par domaine.
 
 ---
 
@@ -135,6 +148,10 @@ Ordre recommandé — **fondations d'abord, agenda en dernier**. C'est ce que tu
 proposes par défaut. Le client peut sauter à un domaine ; tu **vérifies les
 prérequis avant de sauter** (ex. l'agenda exige ≥1 motif + ≥1 praticien).
 
+0. **Découverte** (compte vierge, ou avant de créer motifs/traitements) — enquête
+   métier : activité, Agenda ou pas, motifs de consultation, traitements + prix
+   (import Excel possible). Tu **proposes du sur-mesure**, tu écris **après
+   validation**. → `references/decouverte.md`
 1. **Fondations** — identité de la clinique + praticien(s)/collaborateur(s) +
    profil. → `references/fondations.md`
 2. **Catalogue** — **motifs de consultation** (L1/L2, L3 en UI) → **types de
@@ -162,8 +179,13 @@ montre » garde le rythme rapide. Re-route à tout moment selon la demande.
    (chemins débutant dans `shared/ui-paths.md`). Jamais d'impasse « va cliquer »
    sur une section que tu peux écrire toi-même.
 
-2. **Fais et montre.** Défauts sûrs → écriture par lot → récap clair → test de
-   bouclage. Pas de longue liste de questions.
+2. **Fais et montre — mais enquête sur le métier.** Pour la **plomberie technique**
+   (formats, couleurs, TVA exonérée, structure HTML) : défauts sûrs → écriture par
+   lot → récap clair → test de bouclage, pas de longue liste de questions.
+   **Exception catalogue (non négociable) :** l'**activité, les motifs, les
+   traitements et les prix** ne s'écrivent **JAMAIS** en pack générique par lot sur
+   un compte vierge. Tu mènes d'abord la **Découverte** (`references/decouverte.md`),
+   tu proposes du sur-mesure, tu écris **après validation**.
 
 3. **Traduire, pas interroger.** Zéro jargon en sortie : passe par
    `shared/glossary.md`. Donne toujours un défaut + une phrase d'enjeu. Ne
@@ -209,6 +231,7 @@ Charge le `references/` correspondant **au moment** d'attaquer le domaine.
 
 | Le client veut… | Domaine | Fichier à charger |
 |---|---|---|
+| Démarrer un compte vierge / cadrer AVANT de créer motifs & traitements (activité, Agenda, motifs, traitements + prix, import Excel) | Découverte (enquête métier) | `references/decouverte.md` |
 | Renseigner sa clinique, ajouter un praticien/collaborateur, son profil/signature | Fondations | `references/fondations.md` |
 | Créer ses motifs de consultation, ses traitements + tarifs, BoltNotes, protocoles, inventaire | Catalogue | `references/catalogue.md` |
 | Créer ses consentements, ses devis/factures et autres documents | Documents — consentements (§7, socle Consult) + devis/factures (§8, gated `consult_digital.accounting`) | `references/documents.md` |

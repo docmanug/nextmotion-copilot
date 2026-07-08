@@ -1,6 +1,11 @@
 # Motifs de consultation — Modèles par défaut (médecine esthétique FR)
 
-> Ce fichier liste les motifs de consultation types proposés par Claude lors de la configuration initiale d'un compte Nextmotion. Il couvre les actes courants en médecine esthétique française. Le praticien peut supprimer, modifier ou ajouter des motifs.
+> **Base à AJUSTER — pas un pack à écrire tel quel.** Ce fichier liste des motifs
+> types de médecine esthétique FR, utilisés **uniquement en fallback** de la Phase
+> Découverte (`references/decouverte.md`) : quand le client ne sait pas quoi mettre
+> ou veut aller vite. Le chemin normal, c'est de partir de **SES** motifs (recueillis
+> en Découverte). Ici, on part de cette base et **on l'ajuste avec lui avant de
+> créer** (retirer, ajouter, renommer, changer les durées).
 
 ---
 
@@ -12,9 +17,9 @@ Nextmotion utilise une structure à 3 niveaux pour organiser les consultations :
 |--------|-------------|-------------|-----|
 | **L1** | Catégorie de consultation | Regroupement par grande famille d'actes | ✅ `oapi_clinic_visit_type_category_create` |
 | **L2** | Motif de consultation | L'acte ou la raison de venue du patient | ✅ `oapi_clinic_visit_type_create` |
-| **L3** | Sous-motif | Précision du motif (ex. zone anatomique) | ⚠️ Guidage UI uniquement (lecture seule via MCP) |
+| **L3** | Sous-motif | Précision du motif (ex. zone anatomique) | ✅ MCP direct (tableau `sub_visit_types`) |
 
-**Règle pratique :** commencer par créer les catégories (L1), puis les motifs dans chaque catégorie (L2). Les sous-motifs (L3) se gèrent dans l'interface Nextmotion (⚙️ → Consultations → sous-motifs).
+**Règle pratique :** commencer par créer les catégories (L1), puis les motifs (L2) dans chaque catégorie, avec leurs sous-motifs (L3) passés dans le tableau `sub_visit_types` — **tout via MCP** (cf. `references/catalogue.md` § 5).
 
 ---
 
