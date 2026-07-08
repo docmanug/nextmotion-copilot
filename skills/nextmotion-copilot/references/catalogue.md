@@ -24,9 +24,9 @@
 
 ## Section 5 — Motifs de consultation (L1 / L2 / L3)
 
-**Niveau MCP : 🟡 Partielle.**
+**Niveau MCP : ✅ Complète.**
 - L1 (catégories) et L2 (motifs) → MCP complet ✅
-- **L3 (sous-motifs) → MCP direct** ✅ (créables via le tableau `sub_visit_types`, vérifié prod — cf. sous-section L3 plus bas)
+- **L3 (sous-motifs) → MCP complet ✅** (créés via le tableau `sub_visit_types` — cf. § L3 ci-dessous ; l'UI n'est qu'un repli)
 
 > **Structure recommandée (celle de la Découverte).** **L1 = grande famille / zone**
 > (Visage, Silhouette) · **L2 = technique / acte** (Injection, Peeling, Radiofréquence,
@@ -321,7 +321,7 @@ Vérification : lister les produits créés.
 ✅ Motifs de consultation (L1/L2/L3) :
    - [N] catégories créées
    - [N] motifs créés
-   - [N] sous-motifs créés (via MCP)
+   - [N] sous-motifs créés (via MCP, sub_visit_types)
 
 ✅ Traitements et tarifs :
    - [N] traitements créés

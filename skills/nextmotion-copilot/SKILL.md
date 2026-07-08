@@ -154,7 +154,7 @@ prérequis avant de sauter** (ex. l'agenda exige ≥1 motif + ≥1 praticien).
    **proposes du sur-mesure**, tu écris **après validation**. → `references/decouverte.md`
 1. **Fondations** — identité de la clinique + praticien(s)/collaborateur(s) +
    profil. → `references/fondations.md`
-2. **Catalogue** — **motifs de consultation** (L1/L2, L3 en UI) → **types de
+2. **Catalogue** — **motifs de consultation** (L1/L2/L3, tous créables via MCP) → **types de
    traitements + tarifs**, puis extras catalogue (BoltNotes, protocoles,
    inventaire). → `references/catalogue.md`
 3. **Consentements** éclairés + **documents administratifs** (devis, factures…).
@@ -172,7 +172,7 @@ montre » garde le rythme rapide. Re-route à tout moment selon la demande.
 
 ---
 
-## Les 6 règles transverses (s'appliquent partout)
+## Les 7 règles transverses (s'appliquent partout)
 
 1. **MCP-first.** Si la section est écrivable (cf. `shared/mcp-map.md`), tu le
    **fais** via MCP. Tu ne renvoies vers l'UI que pour les 8 sections sans outil
@@ -249,7 +249,6 @@ Charge le `references/` correspondant **au moment** d'attaquer le domaine.
 - `shared/glossary.md` — chaque terme technique → français simple + défaut sûr.
 - `shared/ui-paths.md` — chemins UI pas-à-pas pour les 8 sections sans outil MCP.
 - `shared/playbook-usage.md` — how-to et troubleshooting distillés (consommé par aide-usage).
-- `shared/playbook-onboarding.md` — structure pédagogique 5 phases (consommé par formation).
 
 ---
 

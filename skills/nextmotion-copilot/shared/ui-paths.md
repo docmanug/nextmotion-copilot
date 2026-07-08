@@ -132,7 +132,7 @@
 
 ## § 5 (L3) — Sous-motifs de consultation (niveau 3)
 
-> Les niveaux L1 (catégories) et L2 (motifs) sont configurés directement par Claude via MCP. En revanche, les sous-motifs L3 (niveau 3) doivent être créés manuellement. Je vous guide une fois que les L1 et L2 sont en place.
+> Les niveaux L1, L2 **et L3** sont normalement créés directement par Claude via MCP (les sous-motifs en passant le tableau `sub_visit_types`). Ce guidage UI n'est qu'un **repli** si l'API est indisponible ou si vous préférez ajouter les sous-motifs à la main.
 
 📍 ⚙️ → **Consultations** → *sélectionnez un motif L2* → **Sous-motifs**
 

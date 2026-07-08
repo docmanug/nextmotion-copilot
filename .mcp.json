@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "nextmotion": {
+      "type": "http",
+      "url": "https://mcp.nextmotion.net/mcp"
+    }
+  }
+}

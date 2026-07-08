@@ -13,11 +13,15 @@ Le plugin **Nextmotion Copilot** a besoin d'**un seul connecteur** pour fonction
 
 ## Activer le connecteur Nextmotion (Claude Code)
 
-```bash
-claude mcp add --transport http nextmotion https://mcp.nextmotion.net/mcp
-```
+Le serveur MCP **nextmotion** est **fourni par le plugin** (`.mcp.json`) : rien à ajouter à la main. Après l'install du plugin :
 
-Puis `/mcp` → **nextmotion** → authentifie-toi au compte Nextmotion de ta clinique (OAuth).
+1. Ouvre `/mcp` → **approuve** le serveur **nextmotion** (`https://mcp.nextmotion.net/mcp`).
+2. **Authentifie-toi** au compte Nextmotion de ta clinique (OAuth). Rien à copier-coller.
+
+> Install manuelle (hors plugin), si jamais nécessaire :
+> ```bash
+> claude mcp add --transport http nextmotion https://mcp.nextmotion.net/mcp
+> ```
 
 ## Prérequis
 
