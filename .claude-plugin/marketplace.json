@@ -7,7 +7,7 @@
       "name": "nextmotion-copilot",
       "source": ".",
       "description": "Copilote Nextmotion en langage naturel : config, aide à l'usage, onboarding/formation.",
-      "version": "1.2.17"
+      "version": "1.2.18"
     }
   ]
 }

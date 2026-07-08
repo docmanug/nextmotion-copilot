@@ -28,6 +28,12 @@
 - L1 (catégories) et L2 (motifs) → MCP complet ✅
 - **L3 (sous-motifs) → MCP direct** ✅ (créables via le tableau `sub_visit_types`, vérifié prod — cf. sous-section L3 plus bas)
 
+> **Structure recommandée (celle de la Découverte).** **L1 = grande famille / zone**
+> (Visage, Silhouette) · **L2 = technique / acte** (Injection, Peeling, Radiofréquence,
+> Laser, HIFU) · **L3 = le motif réservable précis** (Première consultation, Séance de
+> traitement, Consultation de suivi, Consultation de contrôle). Reprends la liste des
+> motifs **réservables en ligne / Doctolib** que le client t'a donnée et range-la ainsi.
+
 ### Étape 1 — Proposer les motifs (issus de la Découverte)
 
 Tu proposes les motifs **à partir de ce que le client t'a dit** (`references/decouverte.md`) —
@@ -40,12 +46,13 @@ son activité, ses motifs de consultation. Reformule et fais **valider avant** d
 médecine esthétique **comme base à ajuster** (`templates/motifs-defaults.md`), jamais écrit
 tel quel sans OK :
 
-| Catégorie (L1) | Motifs (L2) |
-|----------------|-------------------|
-| Consultations générales | Première consultation (45 min), Suivi/contrôle (15 min) |
-| Injections | HA (30 min), Toxine botulique (30 min), Injections combinées (45 min) |
-| Soins & technologies | Laser (30 min), Peeling chimique (30 min), HIFU (60 min) |
-| Actes spécifiques | Retouche/complémentation (20 min) |
+| Zone (L1) | Techniques (L2) → motifs réservables (L3) |
+|-----------|-------------------------------------------|
+| **Visage** | Injection · Peeling · Laser · Radiofréquence/HIFU — chaque technique avec *Première consultation / Séance / Consultation de suivi / Consultation de contrôle* |
+| **Silhouette** | HIFU-RF corps · Cryolipolyse · Lipolyse injectable — même trame L3 |
+| **Consultations générales** *(optionnel)* | Première consultation (45 min) · Téléconsultation (30 min) |
+
+Détail complet du pack : `templates/motifs-defaults.md`.
 
 > « Je peux partir de cette base type et on l'ajuste ensemble ? Dites-moi ce que vous
 > voulez retirer, ajouter ou renommer. » — puis crée **après** son OK.
@@ -58,7 +65,7 @@ Pour chaque catégorie validée :
 Nextmotion:oapi_clinic_visit_type_category_create
 → Paramètres réels (vérifiés en prod 25/06) :
   - clinic_id (requis)
-  - name (requis, ex. "Injections")
+  - name (requis — c'est la grande famille / zone L1, ex. "Visage", "Silhouette")
   - speciality (optionnel, ENUM) : ex. `aesthetic_doctor`, `plastic_surgeon`, `dermatologist`, `injecting_nurse`…
 ```
 
@@ -109,12 +116,12 @@ Nextmotion:oapi_visit_type_update           → modifier un motif L2
 **(a) En même temps que le motif L2** — passe le tableau `sub_visit_types` dans `oapi_clinic_visit_type_create` :
 ```
 oapi_clinic_visit_type_create(
-  clinic_id, subject="Injection acide hyaluronique", color="3498db", category=<L1>, duration_minutes=30,
+  clinic_id, subject="Injection", color="3498db", category=<L1 "Visage">, duration_minutes=30,
   sub_visit_types=[
-    {subject:"Lèvres", duration_minutes:30},
-    {subject:"Pommettes", duration_minutes:30},
-    {subject:"Sillons nasogéniens", duration_minutes:30},
-    {subject:"Cernes", duration_minutes:30}
+    {subject:"Première consultation injection", duration_minutes:45},
+    {subject:"Séance d'injection", duration_minutes:30},
+    {subject:"Consultation de suivi", duration_minutes:20},
+    {subject:"Consultation de contrôle", duration_minutes:15}
   ])
 ```
 Chaque sous-motif (item) exige au minimum **`subject` + `duration_minutes`** ; `color`/`display_in_agenda`/`price` optionnels. Les IDs L3 sont renvoyés à la création.

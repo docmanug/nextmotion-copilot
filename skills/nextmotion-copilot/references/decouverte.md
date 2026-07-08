@@ -44,13 +44,35 @@ cf. `shared/feature-gating.md`). Adapte le discours :
   structurer vos comptes-rendus de consultation. » *(ne parle pas de RDV en ligne
   si l'agenda n'est pas là)*
 
-Puis, dans les deux cas :
+**Amorce n°1 — pars de ses motifs réservables en ligne (la source la plus fiable) :**
 
-> « **Quels sont vos motifs de consultation principaux ?** Par exemple : Première
-> consultation, Suivi, Injection, Laser, Peeling… Donnez-moi les vôtres, je m'adapte. »
+> « Le plus simple : **listez-moi les motifs de consultation que vos patients peuvent
+> déjà réserver en ligne.** Si vous êtes sur **Doctolib**, reprenez vos motifs
+> Doctolib ; sinon, ceux de votre page de prise de rendez-vous actuelle. Ça me donne
+> exactement ce dont vous avez besoin. »
 
-Si utile, rappelle la hiérarchie en une phrase : un **motif** (« Injection ») peut
-avoir des **sous-motifs** (« Lèvres », « Pommettes », « Front »).
+Ces motifs reflètent sa vraie activité et sa façon de faire réserver → c'est le
+meilleur point de départ. Récupère la liste brute, tu la rangeras juste après dans
+la hiérarchie NM à 3 niveaux.
+
+**Explique la hiérarchie à 3 niveaux, avec un exemple concret** (c'est ainsi que NM
+organise les motifs de consultation) :
+
+| Niveau | Ce que c'est | Exemples |
+|---|---|---|
+| **Catégorie 1 (L1)** | grande zone / famille | **Visage**, **Silhouette** |
+| **Catégorie 2 (L2)** | technique / acte | **Injection**, **Peeling**, **Radiofréquence**, Laser, HIFU |
+| **Catégorie 3 (L3)** | le motif **réservable** précis | Injection → *Première consultation injection*, *Séance d'injection*, *Consultation de suivi*, *Consultation de contrôle* · Peeling → *Consultation peeling*, *Première séance peeling*, *Consultation de suivi peeling* |
+
+> « Dans Nextmotion, vos motifs se rangent sur 3 niveaux : une **grande famille**
+> (Visage, Silhouette), une **technique** (Injection, Peeling, Radiofréquence…), et
+> le **motif précis que le patient réserve** (Première consultation, Séance de
+> traitement, Consultation de suivi, Consultation de contrôle…). Je reprends votre
+> liste et je vous la range comme ça — vous validez ou vous ajustez. »
+
+Reformule SA liste dans cette structure, fais **valider**, **puis** crée
+(cf. `references/catalogue.md` § 5 : L1 = catégorie, L2 = motif, L3 = sous-motif, tout
+via MCP).
 
 ### 3. Traitements + tarifs (+ import Excel) + hiérarchie
 
@@ -94,10 +116,11 @@ Prix manquant → `0,00 €` à compléter plus tard (jamais un prix inventé).
 
 | Concept métier (ce que dit le client) | Objet NM (API) | Où vit le prix |
 |---|---|---|
-| Motif de consultation | `visit_type` (L2) | — |
-| Sous-motif (zone…) | `sub_visit_type` (L3) | — |
+| Grande famille / zone (Visage, Silhouette) | `visit_type_category` (L1) | — |
+| Technique / acte (Injection, Peeling, RF…) | `visit_type` (L2) | — |
+| Motif réservable précis (première conso, séance, suivi, contrôle) | `sub_visit_type` (L3) | — |
 | Traitement | `treatment_type` | — |
-| **Sous-traitement / ligne de tarif** | **`pricings[]`** d'un `treatment_type` | **ici** (`price` + `vat_rate` + consentement `survey_form`) |
+| **Sous-traitement / ligne de tarif** (zone, volume, forfait…) | **`pricings[]`** d'un `treatment_type` | **ici** (`price` + `vat_rate` + consentement `survey_form`) |
 
 Détail de création : `references/catalogue.md` (§ 5 motifs, § 4 traitements) ;
 rattachement du consentement au sous-traitement : `references/documents.md` § Étape 4.
