@@ -8,7 +8,7 @@
 > mené cette découverte.
 >
 > Les défauts sûrs « fais et montre » restent valables pour la **plomberie
-> technique** (formats, couleurs, TVA exonérée, structure HTML) — **pas** pour le
+> technique** (formats, couleurs, TVA à 20 % par défaut, structure HTML) — **pas** pour le
 > contenu métier, qui est propre à chaque cabinet.
 
 ## Pourquoi cette phase existe
@@ -18,9 +18,9 @@ ses actes, ses prix. Créer un pack standard sans demander force le client à fa
 le ménage derrière. Trois questions courtes suffisent à tout personnaliser — et
 c'est exactement ce qu'un client attend d'un assistant de paramétrage.
 
-## L'enquête — 3 volets, questions courtes, une idée à la fois
+## L'enquête — 4 volets, questions courtes, une idée à la fois
 
-Ne pose pas les 3 blocs d'un coup : enchaîne naturellement, en rebondissant sur
+Ne pose pas les blocs d'un coup : enchaîne naturellement, en rebondissant sur
 les réponses. Zéro jargon (`shared/glossary.md`).
 
 ### 1. Activité
@@ -32,7 +32,38 @@ les réponses. Zéro jargon (`shared/glossary.md`).
 Retiens la/les spécialité(s) → elles orientent **à la fois** les motifs et les
 traitements que tu proposeras.
 
-### 2. Agenda + motifs de consultation
+### 2. Questionnaire de pré-consultation (antécédents) — à mettre en place en premier
+
+C'est **la première brique utile**. À sa première venue, le patient remplit un
+**questionnaire de pré-consultation** (antécédents), sur **iPad via l'app Nextmotion**
+ou **directement sur l'ordinateur** d'un poste de l'équipe (et via le portail patient
+si l'option est active). Propose-le d'emblée.
+
+**a) Message de bienvenue** (en haut du questionnaire) :
+> « On commence par votre questionnaire de pré-consultation. Tout en haut, il y a un
+> **message de bienvenue** : je vous en mets un générique (« Bienvenue, merci de
+> remplir ce questionnaire avant votre consultation… »), ou vous préférez votre
+> propre texte ? »
+
+**b) Les questions** — explique les **types de réponses** et laisse le client dicter :
+> « Vos questions peuvent attendre différents types de réponses :
+> - **réponse libre** (texte) — ex. "Traitements en cours ?"
+> - **oui / non** — ex. "Êtes-vous enceinte ou allaitante ?"
+> - **choix unique** — ex. phototype
+> - **choix multiple** — ex. "Antécédents : allergies · chirurgie · herpès…"
+> - **date** — ex. "Date de votre dernière injection ?"
+> - **échelle 0–10** — ex. seuil de douleur
+>
+> Donnez-moi vos questions, ou dites "propose-moi les standards esthétique", et je les mets en place. »
+
+**Défaut sûr** (si le client ne sait pas) : allergies (oui/non), traitements en cours
+(libre), grossesse/allaitement (oui/non), antécédents chirurgicaux (libre),
+contre-indications connues (choix multiple).
+
+→ **Création via MCP** : `references/finance-comm.md` § 21 — `oapi_clinic_medical_history_update`
+(`h.val` = message de bienvenue, `q[]` = questions typées). Fais **valider** le contenu, puis crée.
+
+### 3. Agenda + motifs de consultation
 
 **Détecte d'abord si l'Agenda est actif** (feature `consult_digital.agenda`,
 cf. `shared/feature-gating.md`). Adapte le discours :
@@ -74,7 +105,7 @@ Reformule SA liste dans cette structure, fais **valider**, **puis** crée
 (cf. `references/catalogue.md` § 5 : L1 = catégorie, L2 = motif, L3 = sous-motif, tout
 via MCP).
 
-### 3. Traitements + tarifs (+ import Excel) + hiérarchie
+### 4. Traitements + tarifs (+ import Excel) + hiérarchie
 
 Commence par proposer l'import, c'est le chemin le plus rapide :
 

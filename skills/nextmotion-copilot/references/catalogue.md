@@ -193,19 +193,19 @@ Nextmotion:oapi_clinic_treatment_type_create
 **⚠️ Le prix = un tableau `pricings`, en décimal (PAS en centimes), TVA INCLUSE dans `price` :**
 ```
 pricings: [
-  { details: "1 seringue (1 ml)", price: "350.00", vat_rate: "0", sessions: 1 },
-  { details: "2 seringues",       price: "650.00", vat_rate: "0", sessions: 1 }
+  { details: "1 seringue (1 ml)", price: "350.00", vat_rate: "20", sessions: 1 },
+  { details: "2 seringues",       price: "650.00", vat_rate: "20", sessions: 1 }
 ]
 ```
 - **`price`** = décimal string TTC (`"350.00"`), **JAMAIS** des centimes (`35000` est faux).
-- **`vat_rate`** = pourcentage (`"0"` pour la médecine esthétique exonérée), **requis dans chaque pricing**.
+- **`vat_rate`** = pourcentage. **En France, les actes esthétiques (non thérapeutiques) sont à `"20"` (20 %)** — c'est le défaut. Seuls les actes à visée thérapeutique/reconstructive peuvent être exonérés (`"0"`) → à confirmer avec le comptable. **Requis dans chaque pricing.**
 - **`details`** = **le NOM de la variante de tarif** (« 1 seringue », « Forfait 3 séances »…). C'est ce qui s'affiche.
 - **`sessions`** = nb de séances incluses (forfaits/cures, ex. `3`).
 - **Plusieurs tarifs nommés par traitement = la norme.** Un traitement peut (doit souvent) avoir 2-3 `pricings`.
 
 > ⚠️ **Le skill disait à tort** `price` en centimes + `vat_rate` à plat + `visit_type_ids[]`. **FAUX** : prix décimal dans `pricings[]`, liaison via **`visit_type`** (singulier) + `sub_visit_type`.
 
-**Défaut sûr TVA :** médecine esthétique = exonérée → `vat_rate: "0"`. À vérifier avec le comptable.
+**Défaut sûr TVA :** actes esthétiques en France = **20 %** → `vat_rate: "20"`. (Actes thérapeutiques/reconstructeurs éventuellement exonérés → `"0"`.) À confirmer avec le comptable.
 
 **Défaut prix :** prix inconnu → `price: "0.00"` (à compléter plus tard). Propose toujours **plusieurs variantes nommées** au client (par volume, par zone, par forfait de séances).
 

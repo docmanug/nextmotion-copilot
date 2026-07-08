@@ -176,7 +176,7 @@
 
 **Paramétrer les actes et tarifs :**
 1. Paramètres > Facturation > Actes → créer un acte : nom, prix TTC, TVA applicable.
-2. Points légaux : les actes médicaux sont généralement exonérés de TVA en France (vérifiez avec votre comptable selon votre situation).
+2. Points légaux : en France, les **actes esthétiques (non thérapeutiques) sont soumis à la TVA à 20 %** ; seuls les actes à visée thérapeutique/reconstructive peuvent être exonérés (vérifiez avec votre comptable selon votre situation).
 3. Informations légales à renseigner pour les documents : nom légal de la société (pas le nom commercial !), SIRET, numéro TVA intracommunautaire, adresse siège, code APE, RPPS, assurance professionnelle.
 4. Vérifiez quel niveau d'information afficher sur les devis versus les consentements (certains praticiens préfèrent retirer les diplômes des devis et les garder sur les consentements).
 

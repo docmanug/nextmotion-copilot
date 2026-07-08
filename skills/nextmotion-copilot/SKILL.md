@@ -149,9 +149,9 @@ proposes par défaut. Le client peut sauter à un domaine ; tu **vérifies les
 prérequis avant de sauter** (ex. l'agenda exige ≥1 motif + ≥1 praticien).
 
 0. **Découverte** (compte vierge, ou avant de créer motifs/traitements) — enquête
-   métier : activité, Agenda ou pas, motifs de consultation, traitements + prix
-   (import Excel possible). Tu **proposes du sur-mesure**, tu écris **après
-   validation**. → `references/decouverte.md`
+   métier : activité, **questionnaire de pré-consultation (antécédents)**, Agenda ou
+   pas, motifs de consultation, traitements + prix (import Excel possible). Tu
+   **proposes du sur-mesure**, tu écris **après validation**. → `references/decouverte.md`
 1. **Fondations** — identité de la clinique + praticien(s)/collaborateur(s) +
    profil. → `references/fondations.md`
 2. **Catalogue** — **motifs de consultation** (L1/L2, L3 en UI) → **types de
@@ -180,7 +180,7 @@ montre » garde le rythme rapide. Re-route à tout moment selon la demande.
    sur une section que tu peux écrire toi-même.
 
 2. **Fais et montre — mais enquête sur le métier.** Pour la **plomberie technique**
-   (formats, couleurs, TVA exonérée, structure HTML) : défauts sûrs → écriture par
+   (formats, couleurs, TVA à 20 % par défaut, structure HTML) : défauts sûrs → écriture par
    lot → récap clair → test de bouclage, pas de longue liste de questions.
    **Exception catalogue (non négociable) :** l'**activité, les motifs, les
    traitements et les prix** ne s'écrivent **JAMAIS** en pack générique par lot sur

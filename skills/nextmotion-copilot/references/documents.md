@@ -36,7 +36,25 @@
 
 > « Un consentement éclairé, c'est le document que votre patient signe avant un acte pour confirmer qu'il a bien été informé des bénéfices, des risques et des alternatives. C'est obligatoire en médecine esthétique. »
 
-### Étape 1 — Proposer les consentements du pack modèles
+### Étape 0 — D'abord : demande s'il a SES propres consentements
+
+**Ne saute pas directement aux modèles.** Beaucoup de praticiens ont déjà leurs
+consentements (validés par leur avocat ou une société savante). Demande **d'abord** :
+
+> « Avant que je vous propose des modèles : **avez-vous déjà vos propres consentements
+> éclairés ?** Si oui, envoyez-les-moi — en **PDF**, en **photo / capture d'écran**, ou en
+> **texte collé** (pour un Word/.docx : collez simplement le texte) — et je les importe
+> **tels quels** dans Nextmotion. »
+
+- **Il en a** → suis l'**Étape 1bis** (recette d'import) pour chacun. **C'est le chemin à
+  privilégier** : ce sont ses documents, déjà validés juridiquement.
+- **Il n'en a pas / veut une base** → propose les modèles du pack (**Étape 1**).
+
+> **Après chaque création/import, dis-lui où le voir.** Indique au client comment
+> retrouver et relire le consentement dans Nextmotion : ⚙️ → **Consentements** → le
+> modèle créé. *(Lien direct de visualisation : à confirmer avec l'équipe NM.)*
+
+### Étape 1 — Proposer les consentements du pack modèles *(fallback : le client n'a pas les siens)*
 
 Claude propose les 4 consentements types inclus dans le skill :
 
@@ -181,7 +199,7 @@ Nextmotion:oapi_treatment_consent_form_upload
 
 ```
 Nextmotion:oapi_clinic_treatment_type_create
-→ pricings: [ { "details": "1 séance", "price": "120.00", "vat_rate": "0",
+→ pricings: [ { "details": "1 séance", "price": "120.00", "vat_rate": "20",
                "survey_form": "<id du consentement>" } ]
 ```
 

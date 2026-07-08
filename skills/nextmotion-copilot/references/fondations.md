@@ -73,7 +73,7 @@ Référence complète : `shared/ui-paths.md` § 2
 
 #### 3. TVA et RPPS
 
-> « Le numéro TVA n'est obligatoire que si vous êtes assujetti(e) à la TVA (rare en médecine esthétique — à vérifier avec votre comptable). Le RPPS, c'est votre numéro d'identification de médecin (11 chiffres, sur votre carte CPS). »
+> « Le numéro de TVA intracommunautaire est nécessaire dès que vous facturez la TVA — c'est le cas pour les **actes esthétiques, taxés à 20 % en France** (à confirmer avec votre comptable ; les actes thérapeutiques/reconstructeurs peuvent être exonérés). Le RPPS, c'est votre numéro d'identification de médecin (11 chiffres, sur votre carte CPS). »
 > Voir glossaire : § RPPS, § TVA.
 
 📍 ⚙️ → **Ma clinique** → **Informations générales**
@@ -155,17 +155,27 @@ Nextmotion:oapi_doctor_update
 **Alternative UI** (si le client préfère une invitation par email plutôt qu'une création directe) :
 📍 ⚙️ → **Équipe** → **Inviter un collaborateur** → email + rôle → invitation envoyée.
 
-### Étape D — Tags NM Capture (si Capture actif)
+### Étape D — Mots-clés photos avant/après (NM Capture, si Capture actif)
 
-> « Les tags Capture, c'est les mots-clés que vous associez aux photos before/after de vos patients (ex. "Lèvres", "Front", "Sillons"). Ça vous permet de retrouver et trier vos photos facilement. »
+> « Vous pouvez associer des **mots-clés** à vos photos avant/après. C'est ce qui vous
+> permet de **retrouver instantanément vos cas** dans le portfolio au moment de l'export —
+> ou, face à un patient, de lui montrer vos meilleurs résultats sur une zone précise.
+> On cherche les avant/après **par type de traitement** ET **par mots-clés**, et les deux
+> **se croisent**. »
 
-**Si la feature `capture` est active**, Claude demande :
+**Si la feature `capture` est active**, propose-les avec des exemples parlants selon sa pratique :
 
-> « Vous voulez créer des mots-clés pour vos photos before/after ? Je vous propose les plus courants en médecine esthétique — vous validez ou adaptez. »
+> « Quelques exemples :
+> - **Injections** : les **zones** — *Front, Sillons nasogéniens, Pommettes, Ovale du visage,
+>   Lèvres, Cernes* — qui se croisent avec le traitement « Injection d'acide hyaluronique ».
+> - **Greffe de cheveux** : *FUE 1500*, *FUE 3000* (selon le nombre de greffons).
+> - **Chirurgie** : *Rhinoplastie ouverte*, *Blépharoplastie*…
+> - Génériques : *Avant*, *Après*, *Visage complet*, *Corps*.
+>
+> Dites-moi vos actes, je vous propose une liste de mots-clés adaptée — vous validez ou ajustez. »
 
-Mots-clés suggérés : `Visage complet`, `Lèvres`, `Pommettes`, `Front`, `Glabelle`, `Pattes d'oie`, `Cernes`, `Sillons`, `Menton`, `Corps`, `Avant`, `Après`
-
-**Note :** Les tags Capture se gèrent via l'API media (non exposée dans le MCP de config). Claude guide via l'interface NM Capture ou l'UI web.
+**Note technique :** les mots-clés photos se gèrent via l'API media (**non exposée** dans le
+MCP de config) → Claude ne peut pas les créer lui-même, il **guide** le client dans l'app.
 📍 ⚙️ → **NM Capture** → **Mots-clés**
 
 ---

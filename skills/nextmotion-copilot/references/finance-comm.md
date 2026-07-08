@@ -90,31 +90,50 @@ Claude essaie de vérifier les features actives via `Nextmotion:oapi_clinic_feat
 
 ---
 
-## §21 — Antécédents médicaux
+## §21 — Questionnaire de pré-consultation / Antécédents médicaux
 
-> « Je peux activer et configurer les **questions sur les antécédents médicaux** de vos patients — des champs affichés dans le dossier patient (allergies, traitements en cours, antécédents chirurgicaux, etc.). »
+> **À proposer TÔT** (cf. `references/decouverte.md` § 2) — c'est la première brique
+> utile : à sa première venue, le patient le remplit sur **iPad (app Nextmotion)** ou
+> sur **ordinateur** (poste de l'équipe), et via le **portail patient** si l'option est active.
 
-**Feature `consult_digital.patient_portal` recommandée (mais singleton disponible même sans).**
+**Feature `consult_digital.patient_portal` recommandée** (mais le questionnaire clinique existe même sans — un par clinique, `scope: clinic`).
 
 **Ce que Claude fait via MCP :**
-- `Nextmotion:oapi_clinic_medical_history_retrieve` — lire la configuration actuelle des antécédents
-- `Nextmotion:oapi_clinic_medical_history_update` — mettre à jour la configuration
+- `Nextmotion:oapi_clinic_medical_history_retrieve` — lire la config actuelle
+- `Nextmotion:oapi_clinic_medical_history_update` — écrire la config
 
-**Question client-only :**
+**Structure `medical_history_tmpl` :**
 
-> « Quels antécédents voulez-vous pouvoir renseigner dans vos dossiers patients ? Les plus courants en médecine esthétique :
-> - Allergies médicamenteuses
-> - Traitements en cours
-> - Antécédents chirurgicaux
-> - Contre-indications (grossesse, allaitement, maladies auto-immunes)
-> - Traitements esthétiques antérieurs
->
-> Vous voulez activer tout ça, ou juste certains champs ? »
+```
+{
+  "h": { "val": "<message de bienvenue, en haut du questionnaire>" },
+  "q": [ { "id": "<UUID>", "type": <1-7>, "val": "<texte de la question>", … } ]
+}
+```
 
-**Défaut sûr :** activer les champs standard (allergies + traitements en cours + contre-indications).
+- **`h.val`** = le **message de bienvenue** (générique proposé, ou texte fourni par le client).
+- **`q[]`** = les questions, chacune avec un **`id` = UUID** et un **`type`** :
+
+| `type` | Réponse attendue | Champs en plus de `id`/`val` |
+|--------|------------------|------------------------------|
+| 1 | Texte libre | — |
+| 2 | Oui / Non | `y`, `n` (libellés des boutons) |
+| 3 | Choix unique (radio) | `boxes:[{id, text}]` |
+| 4 | Choix multiple (cases) | `boxes:[{id, text}]` |
+| 5 | Échelle 0–10 | `min`, `max` |
+| 7 | Date | — |
+
+> Mets un **`id` UUID** par question **et par `box`** (cohérent avec les autres formulaires NM ; évite tout souci de création).
+
+**Question client :** message de bienvenue (générique / son texte ?) + ses questions
+(ou « propose-moi les standards esthétique »).
+
+**Défaut sûr :** allergies (oui/non), traitements en cours (libre), grossesse/allaitement
+(oui/non), antécédents chirurgicaux (libre), contre-indications connues (choix multiple).
 
 **Récap après mise à jour :**
-> « ✅ Antécédents médicaux configurés. Ces champs apparaissent maintenant dans chaque dossier patient — votre équipe peut les remplir lors de la première consultation. »
+> « ✅ Questionnaire de pré-consultation en place. À la première venue d'un patient,
+> votre équipe l'ouvre sur iPad (app Nextmotion) ou sur l'ordinateur, et le patient le remplit. »
 
 ---
 
