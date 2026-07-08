@@ -180,7 +180,7 @@ Ne jamais tester avec de vrais patients. Créer un patient fictif avec un nom cl
 2. Ouvrir une consultation : sélectionner le motif, documenter.
 3. Prendre des photos et les associer à la fiche.
 4. Créer un devis à partir du modèle.
-5. Faire signer le devis sur iPad (ou tester l'envoi par email pour signature à distance).
+5. Faire signer le devis **en présentiel** (iPad, iPhone ou ordinateur, patient présent) ; l'email n'envoie qu'une **copie** du devis — **aucune signature à distance pour un devis** (cf. `formation.md` §Phase 4, qui fait autorité).
 6. Émettre la facture.
 7. Vérifier l'envoi de la confirmation au patient.
 
@@ -221,7 +221,7 @@ L'assistante n'a pas besoin du paramétrage — elle prend en main un compte dé
 
 1. Ouvrir un devis depuis la fiche patient.
 2. Sélectionner le modèle adapté au traitement prévu.
-3. Valider et envoyer pour signature (iPad ou email).
+3. Valider et faire signer **en présentiel** (iPad, iPhone ou ordinateur) ; l'email ne sert qu'à envoyer une **copie**.
 4. Vérifier le suivi de l'envoi (les 3 états possibles : envoyé / délivré / ouvert).
 5. Envoyer un document post-soin au patient par email.
 
@@ -284,7 +284,7 @@ Fiche à compléter et remettre en début de prise en main :
 Parcours à faire faire (l'utilisateur exécute, le copilote accompagne) :
 - Créer un patient fictif avec un nom clairement test (ex. : "Marie TEST", date de naissance fictive).
 - Parcourir le flux complet : fiche → consultation → photo → devis → signature → facture.
-- Tester la signature depuis l'appareil réel (iPad ou envoi email à distance).
+- Tester la signature depuis l'appareil réel **en présentiel** (iPad, iPhone ou ordinateur) — pas de signature à distance pour un devis.
 - Créer une facture test pour vérifier l'aperçu complet avec logo + signature + mentions légales.
 
 > Important : pendant la phase de test, toutes les données créées sont des données fictives. Avant le go-live, elles seront archivées ou supprimées. Aucun nettoyage manuel n'est nécessaire de la part du client.
@@ -293,7 +293,7 @@ Parcours à faire faire (l'utilisateur exécute, le copilote accompagne) :
 
 - [ ] Connexion fluide sur Chrome, zoom 100 %
 - [ ] Logo et signature s'affichent correctement sur les documents
-- [ ] Un devis test peut être créé, signé et envoyé par email
+- [ ] Un devis test peut être créé, **signé en présentiel** (iPad/iPhone/ordinateur), et une **copie** envoyée par email
 - [ ] La facture générée comporte les bonnes mentions légales (SIRET, TVA si applicable)
 - [ ] Le suivi email fonctionne (les 3 états s'affichent bien)
 - [ ] Si assistante : elle peut se connecter avec son propre compte

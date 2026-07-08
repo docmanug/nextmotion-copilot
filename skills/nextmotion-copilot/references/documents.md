@@ -102,8 +102,8 @@ custom). **Le contenu va donc dans `note_tmpl.template.html`, jamais dans `field
    Selon la réponse, ajoute le champ dans **`fields_tmpl.q`** :
    - texte → `{"id":"<uuid>","type":1,"val":"Zone(s) de traitement"}`
    - oui/non → `type:2` + `"y":"Oui","n":"Non"` · date → `type:7` · échelle → `type:5` + `"min":1,"max":10`
-   - liste QCM → `type:3` (choix unique) / `type:4` (multi) + `"boxes":[{"id":"<uuid>","text":"Aisselles","val":"Aisselles"}, …]`
-     ⚠️ **`text` ET `val` dans chaque box** (workaround bug serveur 500) ; `id` = **UUID**.
+   - liste QCM → `type:3` (choix unique) / `type:4` (multi) + `"boxes":[{"id":"<uuid>","text":"Aisselles"}, …]`
+     ℹ️ Le serveur lit `boxes[].text` (schéma aligné, vérifié live 2026-07-08) ; l'`id` de box/question est **généré côté serveur** s'il manque (un UUID reste ok par sécurité).
    Puis **récupère le code généré** : après create/update, NM renvoie le champ dans
    `note_tmpl.autocomplete_list` (format `__survey_<libellé slugifié>--autocomplete`). **Lis ce code exact dans
    la réponse — ne le devine pas** — et insère-le dans le HTML :
@@ -123,7 +123,7 @@ custom). **Le contenu va donc dans `note_tmpl.template.html`, jamais dans `field
      il ne pousse jamais l'image lui-même.
 
 7. **Nomme** d'après l'acte, `type: "treatment_consent"`, crée via `oapi_clinic_survey_form_create`
-   (avec `note_tmpl` — Étape 2), puis **rattache au type de traitement** (Étape 4, UI).
+   (avec `note_tmpl` — Étape 2), puis **rattache à la ligne de tarif** (Étape 4 — **MCP direct** via `pricings[].survey_form`, ou UI).
 
 > Au client : « Je l'ai créé comme **consentement de traitement** (pas en document droit-à-l'image),
 > mis en page, avec les champs auto — nom du patient, date, signature — et rattaché à votre acte. »
@@ -146,10 +146,9 @@ complet (page-wrappé + autofills `embed-autocomplete`). C'est le rendu exact à
 **Mise à jour du HTML** : `oapi_survey_form_update` avec `survey_form_id` + `note_tmpl`.
 Envoyer `note_tmpl` seul **préserve** le `fields_tmpl` existant.
 
-**🚫 Si (et seulement si) tu remplis `fields_tmpl.q`** (autofills custom) — règles anti-500 (bugs
-serveur connus, cf. `shared/known-issues.md` § survey_form CREATE) :
-1. **Chaque question DOIT avoir un `id` = UUID valide** (le serveur ne les génère pas à la création → sinon **500**).
-2. **Types 1/2/7 uniquement** — évite 3/4 : le serveur lit `boxes[].text` alors que le schéma documente `boxes[].val` → **500**.
+**Si tu remplis `fields_tmpl.q`** (autofills custom) — historique des bugs serveur (cf. `shared/known-issues.md` § survey_form CREATE) :
+1. `id` de question — **le serveur les génère désormais** à la création s'ils sont absents (vérifié live 2026-07-08). Tu peux quand même fournir un `id` = UUID valide par sécurité.
+2. Types 3/4 (choix radio / cases) — **corrigés** : le serveur lit bien `boxes[].text` (aligné au schéma, vérifié live 2026-07-08). Les types 1 (texte), 2 (oui/non), 7 (date) restent les plus simples.
 
 **Défaut sûr :** créer avec le texte du pack modèles. Le client peut modifier le texte dans l'interface à tout moment (⚙️ → Consentements → éditer). **Même structure `fields_tmpl` pour les BoltNotes** (catalogue § 6).
 
@@ -174,17 +173,25 @@ Nextmotion:oapi_treatment_consent_form_upload
 → Paramètres : treatment_id (ID du traitement patient), document (PDF signé)
 ```
 
-### Étape 4 — Rattacher les consentements aux types de traitement / lignes de tarif
+### Étape 4 — Rattacher les consentements aux lignes de tarif (types de traitement)
 
-> **Point clé :** dans Nextmotion, un modèle de consentement doit être associé aux types de traitements pour qu'il se charge automatiquement lors d'une consultation.
+> **Point clé :** dans Nextmotion, un modèle de consentement se rattache à une **ligne de tarif** (`pricing`) d'un type de traitement pour se charger automatiquement lors d'une consultation.
 
-> ⚠️ **Limite MCP :** le MCP n'expose pas d'outil d'écriture sur le pricing ni de paramètre de rattachement attesté entre un modèle de consentement et une ligne de tarif. Cette association se fait dans l'interface Nextmotion.
+**✅ MCP direct (vérifié live 2026-07-08).** Le rattachement se fait au niveau du **pricing**, via le champ **`survey_form`** (= l'`id` du consentement `treatment_consent`) dans le tableau `pricings[]` de `oapi_clinic_treatment_type_create` / `oapi_treatment_type_update`. Exemple :
 
-**→ Guide UI :** `shared/ui-paths.md` § 7 — Rattacher un consentement à un type de traitement
+```
+Nextmotion:oapi_clinic_treatment_type_create
+→ pricings: [ { "details": "1 séance", "price": "120.00", "vat_rate": "0",
+               "survey_form": "<id du consentement>" } ]
+```
 
-Chemin interface : ⚙️ → **Catalogue** → **Types de traitements** → sélectionner le traitement → champ **Consentement éclairé** → choisir le modèle créé.
+À la relecture (`oapi_treatment_type_retrieve`), la ligne de tarif renvoie l'objet `survey_form` rattaché → self-check possible.
 
-> « Je vous ai créé les consentements dans Nextmotion. Pour les rattacher à vos traitements, voici comment faire dans l'interface : ⚙️ → Catalogue → Types de traitements → vous sélectionnez chaque traitement et vous choisissez le consentement correspondant. »
+> **Ordre :** crée d'abord le consentement (Étape 2) pour obtenir son `id`, puis passe cet `id` dans `pricings[].survey_form` à la création/màj du traitement. Si le traitement existe déjà, un `oapi_treatment_type_update` avec la liste `pricings` **complète** (chaque pricing existant avec son `id` + le `survey_form`) l'attache.
+
+**Alternative UI** (`shared/ui-paths.md` § 7) : ⚙️ → **Catalogue** → **Types de traitements** → sélectionner le traitement → champ **Consentement éclairé** → choisir le modèle. Utile si le client préfère le faire lui-même sur un traitement déjà en place.
+
+> « J'ai créé vos consentements et je les ai **rattachés directement à vos tarifs**. »
 
 ### Vérification consentements (self-check OBLIGATOIRE — ne jamais l'omettre)
 

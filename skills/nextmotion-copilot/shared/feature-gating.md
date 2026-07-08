@@ -51,7 +51,7 @@
 1. **N'utiliser que `is_enabled: true`** — une feature avec `is_enabled: false` est inactive, même si `end_time` est renseigné.
 2. **Signaler `end_time` proche** — si une feature active a une date d'expiration dans moins de **30 jours**, prévenir le client : « Votre option [nom] expire le [date]. Pensez à la renouveler auprès du support Nextmotion. »
 3. **`count`** indique le quota autorisé (ex. `count: 3` pour `collaborator` = 3 praticiens max). Ne pas dépasser ce quota lors de la configuration.
-4. **`used_count`** indique ce qui est déjà utilisé. Calculer `count - used_count` pour savoir ce qui reste disponible.
+4. **`used_count` / `remaining_count` peu fiables** — vérifié live 2026-07-08 : un compte affichait `remaining_count > 0` alors que la création d'un collaborateur échouait (`400 collab_count_exceeded`), `used_count` restant bloqué à `0`. **Ne te fie pas à `count - used_count` comme garantie.** Le signal fiable = **tenter l'écriture** : si le quota est atteint, `oapi_clinic_doctor_create` renvoie `collab_count_exceeded` → traduis sans jargon (« votre offre inclut N collaborateurs et ils sont tous utilisés ; contactez le support pour en ajouter »).
 
 ---
 

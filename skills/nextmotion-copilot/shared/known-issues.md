@@ -52,6 +52,13 @@ Sur certains comptes, ces lectures renvoient une erreur technique alors que la
 donnée existe. **Cause : côté serveur Nextmotion (schéma de sortie du connecteur),
 pas le copilote.** Repli pour chacune :
 
+> **MàJ 2026-07-08 (re-test live).** Sur les comptes testés ce jour, **toutes ces
+> lectures répondent normalement** (`feature_list`, `doctor_list`, `visit_type_list`,
+> `document_template_list`, `user_me`) — le bug de schéma de sortie semble **corrigé
+> côté serveur**. Les replis ci-dessous restent documentés **par sécurité** (défense en
+> profondeur, autres comptes, régression possible), mais **ne pars plus du principe que
+> c'est cassé** : teste d'abord, la lecture marche probablement.
+
 | Lecture qui peut échouer | Ce qu'elle servait à lire | Repli à utiliser |
 |---|---|---|
 | `oapi_clinic_feature_list` | Les options actives du compte (feature-gating) | **Ne bloque pas.** Si le connecteur te répond (même avec des erreurs ailleurs), c'est que l'option API est active. Propose le parcours standard ; si tu as besoin de savoir si une option payante (Agenda, SMS, Compta) est dans l'offre → **demande-le au client en une phrase**, ou tente l'écriture : si l'option manque, l'écriture le dira. cf. `feature-gating.md`. |
@@ -99,6 +106,12 @@ pour dé-enterrer `clinic_list` & co.)
 ---
 
 ## `survey_form_create` (consentements / BoltNotes) — erreur 500 à la création
+
+> **MàJ 2026-07-08 (re-test live).** Les **deux bugs ci-dessous sont corrigés** : une
+> création sans `id` de question **génère l'`id`** côté serveur, et les **types 3/4**
+> passent (le serveur lit bien `boxes[].text`, aligné au schéma). Le contournement
+> (UUID + types 1/2/7) n'est **plus nécessaire** mais reste inoffensif si tu le gardes.
+> La Règle 0 (zéro jargon d'erreur en sortie) s'applique quoi qu'il arrive.
 
 Créer un consentement ou un BoltNote via `oapi_clinic_survey_form_create` peut renvoyer
 une **erreur 500** à cause de deux bugs serveur dans le traitement de `fields_tmpl` :

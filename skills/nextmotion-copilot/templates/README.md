@@ -7,10 +7,11 @@ Ce dossier contient les **modèles de contenu par défaut** que Claude propose a
 ```
 templates/
 ├── consentements/
-│   ├── ha.md          — Consentement éclairé : acide hyaluronique
-│   ├── toxine.md      — Consentement éclairé : toxine botulique
-│   ├── laser.md       — Consentement éclairé : laser (modèle générique)
-│   └── peeling.md     — Consentement éclairé : peeling chimique
+│   ├── epilation-laser-gentlemax.md — Épilation laser GentleMax ✅ SEUL modèle au format NM prêt-à-injecter (HTML TipTap validé live)
+│   ├── ha.md          — Consentement éclairé : acide hyaluronique (prose à transformer)
+│   ├── toxine.md      — Consentement éclairé : toxine botulique (prose à transformer)
+│   ├── laser.md       — Consentement éclairé : laser générique (prose à transformer)
+│   └── peeling.md     — Consentement éclairé : peeling chimique (prose à transformer)
 ├── documents/
 │   ├── devis.html     — Template devis (variables --autocomplete Nextmotion)
 │   └── facture.html   — Template facture (variables --autocomplete Nextmotion)
