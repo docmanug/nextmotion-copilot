@@ -50,9 +50,9 @@ consentements (validés par leur avocat ou une société savante). Demande **d'a
   privilégier** : ce sont ses documents, déjà validés juridiquement.
 - **Il n'en a pas / veut une base** → propose les modèles du pack (**Étape 1**).
 
-> **Après chaque création/import, dis-lui où le voir.** Indique au client comment
-> retrouver et relire le consentement dans Nextmotion : ⚙️ → **Consentements** → le
-> modèle créé. *(Lien direct de visualisation : à confirmer avec l'équipe NM.)*
+> **Après chaque création/import, dis-lui où le voir.** Donne-lui l'URL directe :
+> **https://app.nextmotion.net/settings/my-treatments/consent-forms**
+> (⚙️ → Mes traitements → Consentements). Il y retrouve et relit tous ses consentements.
 
 ### Étape 1 — Proposer les consentements du pack modèles *(fallback : le client n'a pas les siens)*
 
