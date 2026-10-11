@@ -26,8 +26,9 @@ jobs:
           for entry in market["plugins"]:
               assert "version" not in entry, "la version ne doit être que dans plugin.json"
           announce = "Nextmotion Copilot v" + plugin["version"]
-          assert announce in open("shared/regles-communes.md").read(), \
-              f"shared/regles-communes.md doit annoncer « {announce} » (règle 1)"
+          import glob
+          for path in ["shared/regles-communes.md"] + sorted(glob.glob("skills/*/SKILL.md")):
+              assert announce in open(path).read(), f"{path} doit annoncer « {announce} »"
           print("Manifestes valides, version", plugin["version"])
           PY
 
