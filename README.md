@@ -1,79 +1,93 @@
 # Nextmotion Copilot
 
-Plugin **Claude** (Code & Desktop) qui accompagne toute l'équipe d'une clinique esthétique sur Nextmotion — en **3 modes** :
+Le copilote **Nextmotion** dans Claude. Vous parlez, Claude s'occupe de configurer votre compte, de vous aider au quotidien et de former votre équipe.
 
-- **🔧 Configurer** : paramétrer le compte en langage naturel (motifs, traitements, consentements, devis, horaires…) directement via le MCP Nextmotion.
-- **💡 Aide à l'usage** : répondre aux questions d'usage quotidien (« comment j'envoie un devis ? », « où je trouve mes factures ? ») avec une réponse courte et ciblée, sans audit complet.
-- **🎓 Onboarder / Former** : accompagner un nouveau membre (médecin, secrétaire, associé) avec un parcours pédagogique role-aware en 5 phases.
+Pour les cliniques d'esthétique : médecin, secrétaire, gérant, nouveau collaborateur.
 
-Le client parle à Claude, Claude **classe l'intention** et **agit** : il configure, guide ou forme — avec des défauts sûrs, sans jargon, en français.
+## Ce que fait le plugin
 
-> Objectif à terme : remplacer le wizard d'onboarding `setup.nextmotion.net` et le support usage de premier niveau.
+Cinq compétences, que Claude choisit tout seul selon votre demande. Vous pouvez aussi les appeler à la main en tapant leur nom dans la conversation.
 
-## Pour qui
+| Compétence | Pour quoi faire | Appel à la main |
+|---|---|---|
+| **Configurer le compte** | Découvrir votre activité, puis régler le compte : motifs, traitements, tarifs, consentements, devis et factures, agenda, messages. | `/nextmotion-copilot:configurer-compte` |
+| **Aide au quotidien** | Répondre à « comment je fais ? » : agenda, dossier patient, devis, factures, encaissements, messages, tableaux de bord, application iPhone et iPad, portail patient. | `/nextmotion-copilot:aide-quotidien` |
+| **Former l'équipe** | Un parcours d'accueil adapté au rôle : propriétaire, médecin, secrétaire. | `/nextmotion-copilot:former-equipe` |
+| **Consult IA** | Régler Consult IA, Nextmotion Local, la dictée, et retrouver le « Bilan de vos consultations ». | `/nextmotion-copilot:consult-ia` |
+| **Plusieurs cliniques** | Gérer un groupe : Claude demande toujours quelle clinique avant d'agir. | `/nextmotion-copilot:multi-sites` |
 
-Médecin / secrétaire / clinique esthétique : que ce soit pour ouvrir un compte Nextmotion, se débloquer sur une tâche quotidienne, ou former un nouveau collaborateur.
+Claude répond **dans votre langue** (français par défaut). Les modèles fournis (consentements, motifs, notes) sont en français.
 
-## Installation (client)
+Pour démarrer, tapez dans une nouvelle conversation : **« configure mon compte Nextmotion »**.
 
-**Claude Code** — install depuis ce repo, en deux commandes :
+## Installation
+
+Vous avez besoin d'un compte Claude payant (Pro, Max, Team ou Enterprise) et d'un compte Nextmotion.
+
+Dans **Claude Desktop** (ou sur **claude.ai**) :
+
+1. Ouvrez **Personnaliser**, puis **Plugins**.
+2. Cliquez sur **Parcourir**, puis sur le **+**.
+3. Choisissez **Ajouter une place de marché**, puis **Ajouter un dépôt**.
+4. Collez `https://github.com/docmanug/nextmotion-copilot`.
+5. Installez **Nextmotion Copilot**.
+6. Ouvrez une **nouvelle conversation** et tapez : `configure mon compte Nextmotion`.
+7. Claude vous demande de connecter Nextmotion : voir [`CONNECTORS.md`](CONNECTORS.md).
+
+**Plan B, si vous ne voyez pas « Ajouter une place de marché »** : téléchargez le zip de la [dernière version](https://github.com/docmanug/nextmotion-copilot/releases/latest) (fichier `nextmotion-copilot-<version>.zip`), puis dans **Personnaliser › Plugins**, ajoutez-le en choisissant de téléverser un plugin.
+
+**Claude Code** :
 
 ```text
 /plugin marketplace add docmanug/nextmotion-copilot
 /plugin install nextmotion-copilot@nextmotion-copilot
 ```
 
-Le serveur MCP **nextmotion** est fourni par le plugin (`.mcp.json`) : ouvre `/mcp`, **approuve-le** et **authentifie-toi** (voir [`CONNECTORS.md`](CONNECTORS.md)), puis dis « configure mon compte Nextmotion ».
+Pas à pas détaillé et dépannage : [`docs/INSTALL.md`](docs/INSTALL.md).
 
-**Claude Desktop** — l'install par URL n'existe pas sur Desktop : on téléverse un zip. Construis-le avec `./package.sh`, puis Réglages → **Plugins personnels** → `+` → « Téléverser un plugin local » → `dist/nextmotion-copilot.zip`. Connecteur MCP idem.
+**Tutoriel vidéo** (connecter Claude à Nextmotion) : [français](https://www.tella.tv/video/vid_cmumg5o2r00hu0agm1zmn3ilk) · [English](https://www.tella.tv/video/vid_cmupa4sk7008b05mb4egbg4gc) · [español](https://www.tella.tv/video/vid_cmupbpbya001h06pfhikbh81x). Vous retrouvez aussi ces étapes dans Nextmotion : Paramètres › Centre d'intégration › Plugin Claude.
 
-Prérequis : Claude Code ou Claude Desktop à jour, exécution de code activée, abonnement Nextmotion compatible connecteurs. Détail : [`CONNECTORS.md`](CONNECTORS.md) + [`skills/nextmotion-copilot/INSTALL.md`](skills/nextmotion-copilot/INSTALL.md).
+### Où ça marche
 
-## Packaging
+| Application | Compatible |
+|---|---|
+| Claude Desktop (Mac, Windows) | Oui |
+| claude.ai (navigateur) | Oui |
+| Claude Code | Oui |
 
-```bash
-./package.sh          # → dist/nextmotion-copilot.zip (à envoyer au client)
-```
+### Pour toute l'équipe et plusieurs cliniques
 
-## Architecture
+- **Chaque collaborateur** installe le plugin lui-même, avec son compte Claude et son compte Nextmotion. Ses droits dans Claude sont ceux de son compte Nextmotion.
+- **Avec un plan Team ou Enterprise**, l'administrateur Claude peut ajouter le plugin pour tout le monde (réglages de l'organisation, section des plugins : téléverser le zip de la Release, ou synchroniser depuis GitHub). Les libellés peuvent varier un peu selon votre version.
+- **Pour plusieurs cliniques**, Claude demande toujours laquelle avant d'écrire quoi que ce soit.
 
-Un seul composant : **le skill** `nextmotion-copilot` (pas de `commands/` — format unique recommandé par Claude Desktop), modulaire en interne (progressive disclosure) :
+## Mettre à jour
 
-```
-nextmotion-copilot/                  # racine du plugin (= le repo)
-├── .mcp.json                        # serveur MCP nextmotion (fourni par le plugin)
-├── .claude-plugin/
-│   ├── plugin.json                  # manifeste plugin (requis par l'uploader Desktop)
-│   └── marketplace.json             # pour /plugin marketplace add (Claude Code)
-├── CONNECTORS.md · README.md · LICENSE
-└── skills/
-    └── nextmotion-copilot/          # LE skill (routeur + modules)
-        ├── SKILL.md                 # routeur 3 modes : classification d'intention → module
-        ├── references/              # modules à la demande
-        │   ├── aide-usage.md        #  mode 💡 aide ponctuelle (search_knowledge_base + playbook)
-        │   ├── formation.md         #  mode 🎓 onboarding role-aware (5 phases)
-        │   └── fondations / catalogue / documents / agenda / finance-comm  # mode 🔧 config
-        ├── shared/                  # intent-routing, playbooks, mcp-map, glossary, ui-paths, feature-gating
-        └── templates/               # pack FR (consentements, devis/facture, motifs, BoltNotes)
-```
+Une nouvelle version n'arrive pas toujours toute seule.
 
-## Principes de conception
+- **Claude Desktop / claude.ai** : Personnaliser › Plugins, ouvrez la place de marché Nextmotion, cliquez sur **Vérifier les mises à jour**. Activez **Synchroniser automatiquement** pour ne plus y penser.
+- **Claude Code** : `/plugin marketplace update`.
 
-- **Routeur 3 modes** : classification d'intention en tête (config / aide-usage / onboarding) — chaque mode charge le bon module sans sur-charger l'autre.
-- **MCP-first** : 17 des 25 domaines de config sont écrits par Claude ; seuls 8 passent par l'UI.
-- **Feature-gating** : ne propose que ce que l'abonnement du client active (`GET /clinics/{id}/features`).
-- **« Fais et montre »** : défauts sûrs → écriture par lot → récap → test de bouclage.
-- **Traduire, pas interroger** : zéro jargon, défaut sûr quand le client ne sait pas.
-- **Jamais destructif sur du réel** : `*_destroy` interdit (sauf nettoyage confirmé d'une donnée de **test** auto-créée) ; jamais d'écriture sur de vrais dossiers patients. Données de test étiquetées « TEST » autorisées pour valider la config.
-- **Résilient** : une lecture MCP qui échoue ne bloque jamais et n'affiche jamais d'erreur technique au client (`shared/known-issues.md`).
-- **Filtre client-safe** : aucun contenu CSM interne (argumentaires, pricing interne, codes patients non cliniques).
+Claude annonce la version du plugin dans sa première réponse, pour que vous puissiez vérifier que vous avez la dernière.
 
-Validé par 3 personas non-techniques (test RED→GREEN), où le skill d'onboarding précédent échouait.
+## Données et confidentialité
 
-## MCP requis
+- Vos données sont hébergées par Nextmotion sur des serveurs certifiés HDS (hébergeur de données de santé).
+- Claude règle le compte, vous forme et vous aide au quotidien. Il lit un dossier patient seulement quand vous lui posez une question sur ce patient, et n'y écrit qu'à votre demande, après un récapitulatif (fiche administrative, rendez-vous, appel, devis ou facture provisoire).
+- Il ne supprime ni ne fusionne aucun dossier, n'écrit jamais de contenu médical (notes, comptes rendus, antécédents, ordonnances) et n'envoie aucun message à vos patients. Les actes légaux (valider une facture, encaisser, faire signer) restent à vous.
+- Nextmotion enregistre quelles actions Claude effectue (par exemple « création d'un motif »), jamais le contenu de vos dossiers.
+- Pour couper l'accès : Personnaliser › Connecteurs › Nextmotion › Déconnecter.
 
-Serveur Nextmotion clinique : `https://mcp.nextmotion.net/mcp` (auth par clé API clinique / OAuth), **fourni par le plugin** via `.mcp.json` — il suffit de l'approuver et de s'authentifier.
+Règles complètes : [`shared/donnees-et-confidentialite.md`](shared/donnees-et-confidentialite.md). Politique de confidentialité : https://www.nextmotion.net/fr/politique-confidentialite
 
-## Licence
+## Accès
 
-Voir [`LICENSE`](LICENSE).
+Pendant votre premier mois, le connecteur est ouvert à toutes les cliniques : paramétrage, formation de l'équipe et aide au quotidien. Ensuite, Claude reste disponible pour vous aider et former votre équipe ; les automatisations par l'API demandent l'option API & automatisations.
+
+## Aide
+
+Écrivez-nous : support@nextmotion.net.
+
+## Version et licence
+
+Version actuelle : voir [`CHANGELOG.md`](CHANGELOG.md). Licence : voir [`LICENSE`](LICENSE).

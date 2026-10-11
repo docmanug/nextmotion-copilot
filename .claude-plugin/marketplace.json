@@ -1,6 +1,6 @@
 {
   "name": "nextmotion-copilot",
-  "description": "Copilote Nextmotion : configuration, aide à l'usage, onboarding.",
+  "description": "Place de marché Nextmotion : le copilote Nextmotion pour Claude.",
   "owner": {
     "name": "Emmanuel Elard",
     "email": "support@nextmotion.net"
@@ -9,14 +9,13 @@
     {
       "name": "nextmotion-copilot",
       "source": "./",
-      "description": "Copilote Nextmotion en langage naturel : config, aide à l'usage, onboarding/formation.",
+      "description": "Configurer son compte Nextmotion, trouver de l'aide au quotidien, former son équipe, régler Consult IA et gérer plusieurs cliniques, en langage naturel.",
       "author": { "name": "Emmanuel Elard", "email": "support@nextmotion.net" },
       "homepage": "https://www.nextmotion.net",
       "repository": "https://github.com/docmanug/nextmotion-copilot",
       "license": "LicenseRef-Nextmotion-Proprietary",
-      "keywords": ["nextmotion", "medecine-esthetique", "configuration", "onboarding", "aide"],
-      "category": "productivity",
-      "version": "1.3.3"
+      "keywords": ["nextmotion", "medecine-esthetique", "configuration", "formation", "consult-ia"],
+      "category": "productivity"
     }
   ]
 }

@@ -1,0 +1,39 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copies de shared/ et templates/ à jour
+        run: scripts/sync-shared.sh --check
+
+      - name: Manifestes JSON valides, version unique
+        run: |
+          python3 - <<'PY'
+          import json, sys
+          for p in (".claude-plugin/plugin.json", ".claude-plugin/marketplace.json", ".mcp.json"):
+              json.load(open(p))
+          plugin = json.load(open(".claude-plugin/plugin.json"))
+          assert plugin.get("version"), "version absente de plugin.json"
+          market = json.load(open(".claude-plugin/marketplace.json"))
+          for entry in market["plugins"]:
+              assert "version" not in entry, "la version ne doit être que dans plugin.json"
+          announce = "Nextmotion Copilot v" + plugin["version"]
+          import glob
+          for path in ["shared/regles-communes.md"] + sorted(glob.glob("skills/*/SKILL.md")):
+              assert announce in open(path).read(), f"{path} doit annoncer « {announce} »"
+          print("Manifestes valides, version", plugin["version"])
+          PY
+
+      - name: Validation du plugin avec la CLI Claude
+        continue-on-error: true   # la CLI peut ne pas être installable en CI : les contrôles ci-dessus restent bloquants
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude plugin validate . --strict

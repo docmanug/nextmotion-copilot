@@ -1,34 +1,29 @@
-# Connecteur requis
+# Connecter Nextmotion
 
-Le plugin **Nextmotion Copilot** a besoin d'**un seul connecteur** pour fonctionner : le MCP **Nextmotion** (accès au compte de la clinique).
+Le connecteur **Nextmotion** est fourni par le plugin : vous n'avez rien à ajouter à la main.
 
-## Activer le connecteur Nextmotion (Claude Desktop)
+## Après l'installation
 
-1. Ouvre **Claude Desktop** → **Réglages** (⚙️) → **Connecteurs**.
-2. Ajoute le connecteur **Nextmotion** (`https://mcp.nextmotion.net/mcp`).
-3. **Authentifie-toi** : connecte-toi au compte Nextmotion de ta clinique (OAuth). Rien à copier-coller.
-4. Vérifie que le connecteur apparaît comme **connecté** (actif).
+1. Ouvrez le plugin **Nextmotion Copilot**, onglet **Connecteurs**.
+2. Cliquez sur **Nextmotion**, puis sur **Connecter**.
+3. Connectez-vous avec votre compte Nextmotion habituel (le même que sur le logiciel).
+4. Choisissez **Toujours autoriser**.
 
-> Sans ce connecteur, Claude ne peut ni lire ni configurer le compte : le copilote ne fonctionnera pas.
+Claude agit avec vos droits : ce que votre rôle Nextmotion ne permet pas, Claude ne le fait pas non plus.
 
-## Activer le connecteur Nextmotion (Claude Code)
+## Accès
 
-Le serveur MCP **nextmotion** est **fourni par le plugin** (`.mcp.json`) : rien à ajouter à la main. Après l'install du plugin :
+Pendant votre premier mois, le connecteur est ouvert à toutes les cliniques. Ensuite, Claude reste disponible pour vous aider et former votre équipe ; les automatisations par l'API demandent l'option API & automatisations.
 
-1. Ouvre `/mcp` → **approuve** le serveur **nextmotion** (`https://mcp.nextmotion.net/mcp`).
-2. **Authentifie-toi** au compte Nextmotion de ta clinique (OAuth). Rien à copier-coller.
+## Dernier recours : ajout manuel
 
-> Install manuelle (hors plugin), si jamais nécessaire :
-> ```bash
-> claude mcp add --transport http nextmotion https://mcp.nextmotion.net/mcp
-> ```
+Si le connecteur n'apparaît pas, ajoutez-le vous-même avec cette adresse : `https://mcp.nextmotion.net/mcp`.
 
-## Prérequis
+- Claude Desktop / claude.ai : Personnaliser › Connecteurs › ajouter un connecteur personnalisé.
+- Claude Code : `claude mcp add --transport http nextmotion https://mcp.nextmotion.net/mcp`, puis `/mcp` pour vous connecter.
 
-- **Claude Desktop** à jour (Mac ou Windows).
-- **Exécution de code** activée : Réglages → **Capacités** → activer *code execution* (requis pour les compétences).
-- Un **compte Nextmotion** (la clinique) avec l'option *API & automatisations* active sur l'abonnement.
+## Déconnecter
 
-## Ce que le plugin ne contient pas
+Personnaliser › Connecteurs › Nextmotion › Déconnecter.
 
-Aucun secret, aucune clé API n'est stocké dans le plugin. L'authentification vit uniquement dans le connecteur Nextmotion (OAuth), côté Claude Desktop.
+Le plugin ne contient aucune clé ni aucun mot de passe.
