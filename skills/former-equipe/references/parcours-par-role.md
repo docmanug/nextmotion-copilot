@@ -38,7 +38,7 @@ Elle prend en main un compte déjà configuré : le quotidien d'abord, pas le pa
 - Guides à la demande (à chercher avec `find_guide`) : Ajouter un patient et le rattacher à un praticien · Rechercher un patient depuis la liste des patients · Gérer les statuts de vos rendez-vous · Demander aux patients de confirmer leur rendez-vous.
 - Visites de page utiles : La messagerie · Les leads · La conversion de vos devis.
 - [iPhone/iPad] Écrire à vos patients par chat · L'Agenda : lire sa journée, bloquer un jour, prendre un rendez-vous · Leads : traiter une demande en une minute.
-- Claude fait : rien à configurer. Aide à retrouver un patient ou un devis par les totaux et les chemins, sans recopier de noms (voir `shared/donnees-et-confidentialite.md`).
+- Claude fait : rien à configurer. Aide à retrouver un patient, un rendez-vous ou un devis, et à préparer un devis sur demande (voir `shared/donnees-et-confidentialite.md`).
 - Rôles : une assistante n'est pas administratrice. Lui donner le rôle Manager (administrateur, qui voit et modifie les réglages sensibles) est une **recommandation à confirmer avec le titulaire**, pas une règle.
 
 ## Manager (12)

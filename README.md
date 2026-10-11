@@ -73,7 +73,8 @@ Claude annonce la version du plugin dans sa première réponse, pour que vous pu
 ## Données et confidentialité
 
 - Vos données sont hébergées par Nextmotion sur des serveurs certifiés HDS (hébergeur de données de santé).
-- Claude règle le compte, vous forme et vous aide. Il ne modifie, ne fusionne ni ne supprime aucun dossier patient existant, et n'envoie aucun message à vos patients. Les actes légaux (valider une facture, encaisser, faire signer) restent à vous.
+- Claude règle le compte, vous forme et vous aide au quotidien. Il lit un dossier patient seulement quand vous lui posez une question sur ce patient, et n'y écrit qu'à votre demande, après un récapitulatif (fiche administrative, rendez-vous, appel, devis ou facture provisoire).
+- Il ne supprime ni ne fusionne aucun dossier, n'écrit jamais de contenu médical (notes, comptes rendus, antécédents, ordonnances) et n'envoie aucun message à vos patients. Les actes légaux (valider une facture, encaisser, faire signer) restent à vous.
 - Nextmotion enregistre quelles actions Claude effectue (par exemple « création d'un motif »), jamais le contenu de vos dossiers.
 - Pour couper l'accès : Personnaliser › Connecteurs › Nextmotion › Déconnecter.
 

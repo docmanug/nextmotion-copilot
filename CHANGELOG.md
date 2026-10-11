@@ -33,7 +33,7 @@ Réécriture complète : le copilote passe de un à cinq skills, sur la nouvelle
 - Modèles de consentements, de motifs, de notes et de documents (8 types) mis à jour pour la nouvelle interface.
 
 **Sécurité et confidentialité**
-- Règles de données regroupées en un seul fichier : aucun dossier patient existant modifié, supprimé ni lu pour son contenu médical ; aucun message envoyé aux patients ; actes légaux laissés à l'utilisateur.
+- Règles de données regroupées en un seul fichier : lecture d'un dossier patient seulement sur question à propos de ce patient ; écriture seulement sur demande explicite, après récapitulatif (fiche administrative, rendez-vous, appel, devis ou facture provisoire) ; jamais de suppression, de fusion ni de contenu médical écrit ; aucun message envoyé aux patients ; actes légaux laissés à l'utilisateur.
 - Section « Données et confidentialité » dans le README, avec lien vers la politique de confidentialité.
 - Plus aucune mention interne dans les fichiers publics.
 

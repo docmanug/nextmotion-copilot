@@ -1,6 +1,6 @@
 # Chiffres, rapports, Bilan de vos consultations, téléphonie IA, analyse de peau
 
-> Données : `shared/donnees-et-confidentialite.md` (tu lis des **totaux**, jamais des listes de patients ni des notes).
+> Données : `shared/donnees-et-confidentialite.md` (des **totaux** par défaut ; jamais de notes parcourues en masse).
 > Plusieurs cliniques : skill **multi-sites**. Options : `shared/options-et-credits.md`.
 
 ## 1. Lire son tableau de bord
@@ -22,7 +22,8 @@ statistiques de la clinique (`oapi_clinic_statistics_treatment_types`, `…_trea
 `…_appointment_income`, et les totaux des factures).
 - **Toujours donner la période et la clinique** lues. Plusieurs cliniques : une lecture par clinique, jamais de somme
   « au jugé » (le skill multi-sites explique le choix).
-- **Des totaux, pas des listes de patients.** Pas d'extrapolation : si la période n'est pas couverte, dis-le.
+- **Des totaux par défaut** ; une liste nominative seulement si le client la demande (`shared/donnees-et-confidentialite.md`).
+  Pas d'extrapolation : si la période n'est pas couverte, dis-le.
 - Si l'outil échoue : « Je ne peux pas lire ce chiffre pour l'instant. Vous le trouvez dans Tableau de bord, en
   choisissant la période. » (`shared/problemes-connus.md`).
 - **Mon usage / Votre bilan du trimestre** (menu de l'avatar) : tu **n'inventes rien** de son contenu, tu ne cites aucun

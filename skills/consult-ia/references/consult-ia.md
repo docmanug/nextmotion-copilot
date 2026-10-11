@@ -2,8 +2,8 @@
 
 > Règles de ton, de données et d'options : `shared/regles-communes.md`, `shared/donnees-et-confidentialite.md`,
 > `shared/options-et-credits.md`. Chemins d'écran : `shared/chemins-doctor-portal.md`.
-> Ici : tu **expliques et tu guides**. Tu ne lances pas d'enregistrement et tu ne lis pas le contenu des consultations
-> (règle des données).
+> Ici : tu **expliques et tu guides**. Tu ne lances pas d'enregistrement ; tu ne lis une consultation que pour le patient
+> dont parle le client (règle des données).
 
 ## 1. Les fonctions IA en une page
 

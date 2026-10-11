@@ -1,7 +1,8 @@
 # Le dossier patient au quotidien
 
-Tout se passe sur [ordinateur] sauf mention. Tu **guides** : tu ne lis pas le contenu d'un dossier existant et tu n'y
-écris pas (`shared/donnees-et-confidentialite.md`).
+Tout se passe sur [ordinateur] sauf mention. Tu **guides** le plus souvent. Tu peux lire le dossier du patient dont parle
+le client pour répondre à sa question, et y écrire seulement sur demande explicite (jamais de contenu médical) : voir
+`shared/donnees-et-confidentialite.md`.
 
 ## Comment la page est organisée
 Barre de gauche → **Patients** → cliquez un patient.

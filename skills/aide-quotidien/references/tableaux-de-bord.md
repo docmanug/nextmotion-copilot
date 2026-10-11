@@ -1,8 +1,8 @@
 # Chiffres, tableaux de bord et bilans
 
 ## Donner un chiffre d'activité (lecture seule)
-Autorisé en **totaux uniquement** (règles : `shared/donnees-et-confidentialite.md`). Pas de liste de patients, pas de nom, et tu ne
-parles pas des dossiers individuels. Si le client veut le détail, montre-lui où le trouver à l'écran.
+Des **totaux par défaut** (règles : `shared/donnees-et-confidentialite.md`). Une liste nominative (par exemple les devis en
+attente) seulement si le client la demande ; pour un patient précis, réponds sur ce patient. Montre aussi où le trouver à l'écran.
 
 | Question du client | Comment lire | Où il le voit lui-même |
 |---|---|---|

@@ -88,8 +88,8 @@ sa pratique, pas en liste générique.
 - Antécédents (questionnaire médical) : `references/finance-communication.md`.
 
 ## 7. Créer des fiches patient
-Règles et garde-fous : `shared/donnees-et-confidentialite.md` (nouvelles fiches seulement, récapitulatif et accord, doublons,
-jamais de modification d'un dossier existant). Pratique :
+Règles et garde-fous : `shared/donnees-et-confidentialite.md` (récapitulatif et accord, doublons ; un dossier existant ne se
+modifie que sur demande explicite, jamais fusionné ni supprimé). Pratique :
 - `oapi_clinic_patient_create` exige **e-mail, prénom, nom et sexe** ; le reste est facultatif (date de naissance,
   téléphone, adresse, consentements aux contacts). Vérifie d'abord avec `oapi_clinic_patient_list` que le patient n'existe pas.
 - **Espace patient** : à la création, la case « Créer l'espace patient » (cochée d'office) envoie au patient un e-mail

@@ -1,7 +1,7 @@
 # Dictée, barre ⌘K, Jarvis, Tutos IA
 
 > Données : `shared/donnees-et-confidentialite.md`. Pannes de dictée : `references/depannage-ia.md`.
-> Tu **guides** : tu ne dictes pas à la place du client, tu ne lis pas ses notes et tu ne lances pas de guide à l'écran.
+> Tu **guides** : tu ne dictes pas à la place du client, tu n'écris pas ses notes et tu ne lances pas de guide à l'écran.
 
 ## 1. Dicter une note
 
